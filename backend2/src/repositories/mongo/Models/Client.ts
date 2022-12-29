@@ -15,7 +15,6 @@ export default class ClientModel implements IMongoModel {
   modelName: string = "Client";
 
   getModel(): Model<Client> {
-    console.log(connection.models.Client);
     return (
       connection.models.Client || model<Client>(this.modelName, this.schema)
     );

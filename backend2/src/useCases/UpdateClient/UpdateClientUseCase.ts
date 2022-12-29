@@ -6,7 +6,7 @@ import { ClientsRepository } from "../../repositories/mongo/ClientsRepository";
 export class UpdateClientUseCase {
   constructor(private clientsRepository: ClientsRepository) {}
 
-  async execute(client: ClientDTO) {
+  async execute(client: ClientDTO): Promise<void> {
     const clientExists = await this.clientsRepository.findByEmail(client.email);
 
     if (clientExists && clientExists.id !== client.id) {

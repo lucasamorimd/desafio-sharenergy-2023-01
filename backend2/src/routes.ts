@@ -1,6 +1,7 @@
 import { Request, Response, Router } from "express";
 import { createClientController } from "./factories/CreateClientFactory";
 import { deleteClientController } from "./factories/DeleteClientFactory";
+import { getOneClientController } from "./factories/GetOneClientFactory";
 import { listClientsController } from "./factories/ListClientsFactory";
 import { updateClientController } from "./factories/UpdateClientFactory";
 
@@ -12,6 +13,10 @@ router.post("/client/create", (req: Request, res: Response) => {
 
 router.get("/client/list", (req: Request, res: Response) => {
   return listClientsController.run(req, res);
+});
+
+router.get("/client/:id", (req: Request, res: Response) => {
+  return getOneClientController.run(req, res);
 });
 
 router.put("/client/update", (req: Request, res: Response) => {

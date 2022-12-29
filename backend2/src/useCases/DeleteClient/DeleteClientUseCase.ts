@@ -3,7 +3,7 @@ import { ClientsRepository } from "../../repositories/mongo/ClientsRepository";
 
 export class DeleteClientUseCase {
   constructor(private clientsRepository: ClientsRepository) {}
-  async exeucte(id: string) {
+  async exeucte(id: string): Promise<void> {
     const client = await this.clientsRepository.findById(id);
 
     if (client === null) {
