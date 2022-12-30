@@ -1,7 +1,7 @@
 const Header = () => {
   return (
-    <header className="bg-black">
-      <ul className="bg-black">
+    <header>
+      <ul className="">
         <li>teste</li>
         <li>teste</li>
         <li>teste</li>
