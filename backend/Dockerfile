@@ -4,9 +4,9 @@ WORKDIR /app
 
 ADD . .
 
-RUN npm install && npm cache clean --force
+RUN npm install -g typescript
 
-WORKDIR /app/dev
+RUN npm install
 
 EXPOSE 3000
 
