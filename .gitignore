@@ -1,3 +1,6 @@
 /backend2/node_modules
 /backend2/.env
 /backend2/package-lock.json
+/frontend/node_modules
+/frontend/.env
+/frontend/package-lock.json
