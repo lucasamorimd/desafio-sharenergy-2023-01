@@ -1,4 +1,4 @@
-export interface IService {
+export interface IRequestService {
   get(url: string, params?: any): Promise<any>;
   post(url: string, params?: any): Promise<any>;
   put(url: string, params?: any): Promise<any>;

@@ -1,4 +1,4 @@
-const Login = () => {
+function Login() {
   return (
     <div>
       <div>
@@ -7,5 +7,5 @@ const Login = () => {
       <form></form>
     </div>
   );
-};
+}
 export { Login };

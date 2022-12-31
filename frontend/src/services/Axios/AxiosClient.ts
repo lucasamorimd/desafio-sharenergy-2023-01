@@ -1,19 +1,18 @@
-import { IService } from "../IService";
+import { IRequestService } from "../IRequestService";
 import axios from "axios";
 
-class AxiosClient implements IService {
-  get(url: string, params: any = ""): Promise<any> {
-    let fullUrl = url + encodeURI(params);
-    return axios.get(fullUrl);
+class AxiosClient implements IRequestService {
+  async get(url: string, params: any = ""): Promise<any> {
+    return await axios.get(url, params);
   }
-  post(url: string, params?: any): Promise<any> {
-    return axios.post(url, params);
+  async post(url: string, params?: any): Promise<any> {
+    return await axios.post(url, params);
   }
-  put(url: string, params?: any): Promise<any> {
-    return axios.put(url, params);
+  async put(url: string, params?: any): Promise<any> {
+    return await axios.put(url, params);
   }
-  delete(url: string, params?: any): Promise<any> {
-    return axios.delete(url, params);
+  async delete(url: string, params?: any): Promise<any> {
+    return await axios.delete(url, params);
   }
 }
 export { AxiosClient };
