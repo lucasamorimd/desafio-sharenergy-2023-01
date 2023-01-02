@@ -1,13 +1,15 @@
-const Header = () => {
+function Header() {
   return (
     <header>
-      <ul className="">
-        <li>teste</li>
-        <li>teste</li>
-        <li>teste</li>
-        <li>teste</li>
-      </ul>
+      <nav>
+        <ul className="">
+          <li>teste</li>
+          <li>teste</li>
+          <li>teste</li>
+          <li>teste</li>
+        </ul>
+      </nav>
     </header>
   );
-};
+}
 export { Header };
