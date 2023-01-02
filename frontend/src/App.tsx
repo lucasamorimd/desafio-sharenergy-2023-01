@@ -4,12 +4,12 @@ import { RoutesClientList } from "./routes/RoutesClientList";
 
 function App() {
   return (
-    <div className="p-4">
+    <div className="">
       <header>
         <h1>Titulo do site</h1>
       </header>
       <hr />
-      <div className="py-4">
+      <div className="">
         <RoutesList />
         <RoutesClientList />
       </div>
