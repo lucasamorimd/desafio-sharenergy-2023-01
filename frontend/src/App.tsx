@@ -1,20 +1,23 @@
 import "./App.css";
 import { RoutesList } from "./routes/RoutesList";
-import { RoutesClientList } from "./routes/RoutesClientList";
+
+import { BrowserRouter } from "react-router-dom";
+import { SideMenu } from "./components/layout/SideMenu/SideMenu";
+import { Header } from "./components/layout/Header/Header";
+import { Footer } from "./components/layout/Footer/Footer";
 
 function App() {
   return (
-    <div className="">
-      <header>
-        <h1>Titulo do site</h1>
-      </header>
-      <hr />
-      <div className="">
-        <RoutesList />
-        <RoutesClientList />
+    <BrowserRouter>
+      <div className="main-container">
+        <SideMenu />
+        <div className="content-container">
+          <Header />
+          <RoutesList />
+          <Footer />
+        </div>
       </div>
-      <footer>teste</footer>
-    </div>
+    </BrowserRouter>
   );
 }
 

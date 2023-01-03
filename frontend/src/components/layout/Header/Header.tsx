@@ -1,12 +1,13 @@
+import "./Header.css";
 function Header() {
   return (
     <header>
       <nav>
         <ul>
-          <li>teste</li>
-          <li>teste</li>
-          <li>teste</li>
-          <li>teste</li>
+          <li>
+            <h1>Sharenergy Teste</h1>
+          </li>
+          <li>Logout</li>
         </ul>
       </nav>
     </header>

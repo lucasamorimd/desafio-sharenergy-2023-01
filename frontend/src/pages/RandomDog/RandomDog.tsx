@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { axiosRequest } from "../services/Axios/Factory";
+import { axiosRequest } from "../../services/Axios/Factory";
+import "./RandomDog.css";
 
 function RandomDog() {
   const [dog, setDog] = useState("");
@@ -24,7 +25,13 @@ function RandomDog() {
       <h1>
         Random Dog - <button onClick={loadDog}> Reload</button>
       </h1>
-      {isloading ? <div> carregando... </div> : <img src={dog} />}
+      {isloading ? (
+        <div> carregando... </div>
+      ) : (
+        <div className="doggo">
+          <img src={dog} />
+        </div>
+      )}
     </div>
   );
 }

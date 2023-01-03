@@ -22,6 +22,5 @@ export type UserDTO = {
   picture: Picture;
   login: Login;
   dob: Dob;
-  teste: number;
 };
 // foto do usuário, nome completo, email, username e idade

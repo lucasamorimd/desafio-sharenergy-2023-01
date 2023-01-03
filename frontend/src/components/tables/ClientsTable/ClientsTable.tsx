@@ -1,0 +1,2 @@
+function ClientsTable() {}
+export { ClientsTable };

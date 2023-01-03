@@ -1,0 +1,36 @@
+.homeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tableArea {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.tableArea table {
+    width: 100%;
+    text-align: center;
+}
+
+.searchArea {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.searchArea input {
+    margin-right: 10px;
+}
+
+.paginationArea {
+    margin: 10px 0;
+}
+
+.paginationArea a {
+    margin-right: 10px;
+}
