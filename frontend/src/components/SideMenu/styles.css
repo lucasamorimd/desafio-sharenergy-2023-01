@@ -1,0 +1,8 @@
+#geral aside {
+    flex: 1;
+}
+
+.filters {
+    flex-direction: column;
+    align-items: center;
+}

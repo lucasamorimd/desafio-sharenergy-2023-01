@@ -16,11 +16,12 @@ interface Dob {
   age: number;
   date: string;
 }
-export type UserDTO = {
+interface UserDTO {
   name: Name;
   email: string;
   picture: Picture;
   login: Login;
   dob: Dob;
-};
-// foto do usuário, nome completo, email, username e idade
+  teste: number;
+}
+export type { UserDTO };

@@ -1,0 +1,8 @@
+article .dog_thumb {
+    margin-top: 30px;
+}
+
+article .dog_thumb img {
+    width: 100%;
+    height: auto;
+}

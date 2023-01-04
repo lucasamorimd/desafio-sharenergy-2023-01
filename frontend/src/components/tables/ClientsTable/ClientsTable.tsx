@@ -1,2 +1,0 @@
-function ClientsTable() {}
-export { ClientsTable };

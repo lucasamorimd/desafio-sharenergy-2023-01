@@ -1,4 +1,4 @@
-export interface ClientDTO {
+interface ClientDTO {
   id?: string;
   name: string;
   email: string;
@@ -6,3 +6,5 @@ export interface ClientDTO {
   address: string;
   document: string;
 }
+
+export type { ClientDTO };

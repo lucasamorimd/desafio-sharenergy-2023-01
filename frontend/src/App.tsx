@@ -1,23 +1,18 @@
 import "./App.css";
-import { RoutesList } from "./routes/RoutesList";
-
-import { BrowserRouter } from "react-router-dom";
-import { SideMenu } from "./components/layout/SideMenu/SideMenu";
-import { Header } from "./components/layout/Header/Header";
-import { Footer } from "./components/layout/Footer/Footer";
+import { Header } from "./components/Header";
+import { SideMenu } from "./components/SideMenu";
+import { RoutesList } from "./routes/routes";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="main-container">
-        <SideMenu />
-        <div className="content-container">
-          <Header />
+    <div className="App">
+      <Header />
+      <section id="geral">
+        <div className="container">
           <RoutesList />
-          <Footer />
         </div>
-      </div>
-    </BrowserRouter>
+      </section>
+    </div>
   );
 }
 

@@ -1,0 +1,8 @@
+article .cat_thumb {
+    margin-top: 30px;
+}
+
+article .cat_thumb img {
+    width: 100%;
+    height: auto;
+}
