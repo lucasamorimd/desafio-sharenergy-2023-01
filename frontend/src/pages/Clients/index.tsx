@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { SideMenu } from "../../components/SideMenu";
-import { ClientDTO } from "../../dto/ClientDTO";
-import { ClientsActions } from "./actions";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "./styles.css";
+import { ClientsActions } from "./actions";
+
+import { SideMenu } from "../../components/SideMenu";
 import { ClientCard } from "../../components/ClientCard";
+import { Header } from "../../components/Header";
+
+import { ClientDTO } from "../../dto/ClientDTO";
+
 function Clients() {
   const actions = new ClientsActions();
   const [isLoading, setIsLoading] = useState(false);
@@ -52,84 +56,94 @@ function Clients() {
 
   return (
     <>
-      <section>
-        <div className="widget">
-          <div className="widget_title">
-            <div className="widget_title_text">Clientes</div>
-            <div className="widget_title_bar"></div>
-          </div>
-          <div className="widget_body flex">
-            {isLoading ? (
-              <>Carregando</>
-            ) : (
-              clientsList &&
-              clientsList.map((client, index) => {
-                return (
-                  <ClientCard
-                    key={index}
-                    client={client}
-                    loadClients={loadClients}
-                  />
-                );
-              })
-            )}
-          </div>
+      <Header />
+      <section id="geral">
+        <div className="container">
+          <section>
+            <div className="widget">
+              <div className="widget_title">
+                <div className="widget_title_text">Clientes</div>
+                <div className="widget_title_bar"></div>
+              </div>
+              <div className="widget_body flex">
+                {isLoading ? (
+                  <>Carregando</>
+                ) : (
+                  clientsList &&
+                  clientsList.map((client, index) => {
+                    return (
+                      <ClientCard
+                        key={index}
+                        client={client}
+                        loadClients={loadClients}
+                      />
+                    );
+                  })
+                )}
+              </div>
+            </div>
+          </section>
+
+          <SideMenu
+            filter={
+              <div className="searchArea column">
+                <div>{response && response}</div>
+                <button
+                  onClick={() => {
+                    setShowFormNewClient(!showFormNewClient);
+                  }}
+                >
+                  Novo Cliente
+                </button>
+                {showFormNewClient && (
+                  <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="client_form flex column"
+                    method="POST"
+                  >
+                    <label htmlFor="name">Nome</label>
+                    <input
+                      id="name"
+                      {...register("name")}
+                      type="text"
+                      required
+                    />
+                    <label htmlFor="email">Email</label>
+                    <input
+                      id="email"
+                      {...register("email")}
+                      type="email"
+                      required
+                    />
+                    <label htmlFor="address">Endereço</label>
+                    <input
+                      id="address"
+                      {...register("address")}
+                      type="text"
+                      required
+                    />
+                    <label htmlFor="telephone">Telefone</label>
+                    <input
+                      id="telephone"
+                      {...register("telephone")}
+                      type="tel"
+                      required
+                    />
+                    <label htmlFor="document">CPF</label>
+                    <input
+                      id="document"
+                      {...register("document")}
+                      type="text"
+                      required
+                    />
+                    <button>Salvar</button>
+                  </form>
+                )}
+              </div>
+            }
+          />
         </div>
       </section>
-
-      <SideMenu
-        filter={
-          <div className="searchArea column">
-            <div>{response && response}</div>
-            <button
-              onClick={() => {
-                setShowFormNewClient(!showFormNewClient);
-              }}
-            >
-              Novo Cliente
-            </button>
-            {showFormNewClient && (
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="client_form flex column"
-                method="POST"
-              >
-                <label htmlFor="name">Nome</label>
-                <input id="name" {...register("name")} type="text" required />
-                <label htmlFor="email">Email</label>
-                <input
-                  id="email"
-                  {...register("email")}
-                  type="email"
-                  required
-                />
-                <label htmlFor="address">Endereço</label>
-                <input
-                  id="address"
-                  {...register("address")}
-                  type="text"
-                  required
-                />
-                <label htmlFor="telephone">Telefone</label>
-                <input
-                  id="telephone"
-                  {...register("telephone")}
-                  type="tel"
-                  required
-                />
-                <label htmlFor="document">CPF</label>
-                <input
-                  id="document"
-                  {...register("document")}
-                  type="text"
-                  required
-                />
-                <button>Salvar</button>
-              </form>
-            )}
-          </div>
-        }
-      />
     </>
   );
 }

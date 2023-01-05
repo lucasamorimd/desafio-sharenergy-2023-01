@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { SideMenu } from "../../components/SideMenu";
-import { RandomDogsActions } from "./actions";
 import "./styles.css";
+import { RandomDogsActions } from "./actions";
+
+import { Header } from "../../components/Header";
+import { SideMenu } from "../../components/SideMenu";
+
 function RandomDogs() {
   const [randomDog, setRandomDog] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -23,32 +26,37 @@ function RandomDogs() {
 
   return (
     <>
-      <section>
-        <div className="widget">
-          <div className="widget_title">
-            <div className="widget_title_text">Dogs</div>
-            <div className="widget_title_bar"></div>
-          </div>
-          <div className="widget_body flex">
-            <article>
-              <div className="dog_thumb">
-                {isLoading ? (
-                  <>Carregando...</>
-                ) : (
-                  randomDog && <img src={randomDog} />
-                )}
+      <Header />
+      <section id="geral">
+        <div className="container">
+          <section>
+            <div className="widget">
+              <div className="widget_title">
+                <div className="widget_title_text">Dogs</div>
+                <div className="widget_title_bar"></div>
               </div>
-            </article>
-          </div>
+              <div className="widget_body flex">
+                <article>
+                  <div className="dog_thumb">
+                    {isLoading ? (
+                      <>Carregando...</>
+                    ) : (
+                      randomDog && <img src={randomDog} />
+                    )}
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+          <SideMenu
+            filter={
+              <div className="searchArea">
+                <button onClick={handleReload}>Reload</button>
+              </div>
+            }
+          />
         </div>
       </section>
-      <SideMenu
-        filter={
-          <div className="searchArea">
-            <button onClick={handleReload}>Reload</button>
-          </div>
-        }
-      />
     </>
   );
 }

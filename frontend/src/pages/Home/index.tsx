@@ -4,6 +4,7 @@ import { UserCard } from "../../components/UserCard";
 import { SideMenu } from "../../components/SideMenu";
 import { UserDTO } from "../../dto/UserDTO";
 import { HomeActions } from "./actions";
+import { Header } from "../../components/Header";
 
 function Home() {
   const [search, setSearch] = useState("");
@@ -45,57 +46,62 @@ function Home() {
 
   return (
     <>
-      <section>
-        <div className="widget">
-          <div className="widget_title">
-            <div className="widget_title_text">Usuários</div>
-            <div className="widget_title_bar"></div>
-          </div>
-          <div className="widget_body flex">
-            {isLoading ? (
-              <>Carregando...</>
-            ) : (
-              users &&
-              users.map((item, index) => {
-                return <UserCard key={index} user={item} />;
-              })
-            )}
-          </div>
+      <Header />
+      <section id="geral">
+        <div className="container">
+          <section>
+            <div className="widget">
+              <div className="widget_title">
+                <div className="widget_title_text">Usuários</div>
+                <div className="widget_title_bar"></div>
+              </div>
+              <div className="widget_body flex">
+                {isLoading ? (
+                  <>Carregando...</>
+                ) : (
+                  users &&
+                  users.map((item, index) => {
+                    return <UserCard key={index} user={item} />;
+                  })
+                )}
+              </div>
+            </div>
+          </section>
+          <SideMenu
+            filter={
+              <>
+                <div className="pagination">
+                  <button
+                    disabled={page === 1}
+                    onClick={() => {
+                      setPage(page - 1);
+                    }}
+                  >
+                    &lt;
+                  </button>
+                  <button>{page}</button>
+                  <button
+                    onClick={() => {
+                      setPage(page + 1);
+                    }}
+                  >
+                    &gt;
+                  </button>
+                </div>
+                <div className="searchArea">
+                  <input
+                    id="searchInput"
+                    type="text"
+                    value={search}
+                    onChange={handleSearch}
+                    placeholder="Digite um nome, email ou username"
+                  />
+                </div>
+              </>
+            }
+          />
         </div>
       </section>
-      <SideMenu
-        filter={
-          <>
-            <div className="pagination">
-              <button
-                disabled={page === 1}
-                onClick={() => {
-                  setPage(page - 1);
-                }}
-              >
-                &lt;
-              </button>
-              <button>{page}</button>
-              <button
-                onClick={() => {
-                  setPage(page + 1);
-                }}
-              >
-                &gt;
-              </button>
-            </div>
-            <div className="searchArea">
-              <input
-                id="searchInput"
-                type="text"
-                value={search}
-                onChange={handleSearch}
-                placeholder="Digite um nome, email ou username"
-              />
-            </div>
-          </>
-        }
-      />
     </>
   );
 }

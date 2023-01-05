@@ -8,7 +8,6 @@ type ClientUpdateFormType = {
   loadClients: Function;
 };
 function ClientUpdateForm({ client, loadClients }: ClientUpdateFormType) {
-  const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState("");
   const actions = new ClientsActions();
   const { register, watch, handleSubmit } = useForm({ defaultValues: client });
@@ -22,10 +21,9 @@ function ClientUpdateForm({ client, loadClients }: ClientUpdateFormType) {
     updateClient(data);
   };
   const updateClient = async (data: ClientDTO) => {
-    setIsLoading(true);
     let response = await actions.updateClient(data);
     setResponse(response);
-    setIsLoading(false);
+
     loadClients();
   };
   return (
