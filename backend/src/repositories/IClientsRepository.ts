@@ -1,9 +1,6 @@
 import { Client } from "../entities/Client";
+import { IRepository } from "./IRepository";
 
-export interface IClientsRepository {
-  list(): Promise<Client[]>;
+export interface IClientsRepository extends IRepository {
   findByEmail(email: string): Promise<Client | null>;
-  save(cliente: Client): Promise<void>;
-  update(cliente: Client): Promise<void>;
-  delete(client: Client): Promise<void>;
 }

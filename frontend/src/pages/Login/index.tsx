@@ -22,9 +22,13 @@ function Login() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    let response = await actions.authenticate({ email, password, remember_me });
+    let response = await actions.authenticate({
+      email,
+      password,
+    });
     if (response) {
-      return <Navigate to="/" />;
+      console.log("opa veio aqui mesmo assim");
+      // return <Navigate to="/" />;
     }
   };
 
@@ -58,13 +62,13 @@ function Login() {
             />
           </div>
           <div className="buttonArea">
-            <button>Logar</button>
+            <button type="submit">Logar</button>
           </div>
           <div className="checkArea">
             <input
               type="checkbox"
               checked={remember_me}
-              onClick={handleSetRememberMe}
+              onChange={handleSetRememberMe}
             />
             <label htmlFor="remember_me">Lembrar login?</label>
           </div>

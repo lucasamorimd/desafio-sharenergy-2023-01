@@ -1,4 +1,5 @@
 import { Request, Response, Router } from "express";
+import { authController } from "./factories/AuthFactory";
 import { createClientController } from "./factories/CreateClientFactory";
 import { deleteClientController } from "./factories/DeleteClientFactory";
 import { getOneClientController } from "./factories/GetOneClientFactory";
@@ -12,7 +13,7 @@ router.post("/client/create", (req: Request, res: Response) => {
 });
 
 router.post("/login", (req: Request, res: Response) => {
-  return res.status(200).send("logado");
+  return authController.run(req, res);
 });
 
 router.get("/client/list", (req: Request, res: Response) => {

@@ -1,0 +1,16 @@
+import { Request, Response } from "express";
+import { UserDTO } from "../../dto/UserDTO";
+import { AuthUseCase } from "./AuthUseCase";
+
+export class AuthController {
+  constructor(private authUseCase: AuthUseCase) {}
+  async run(req: Request, res: Response): Promise<Response> {
+    try {
+      let data: UserDTO = req.body;
+      let response = await this.authUseCase.execute(data);
+      return res.status(200).json(response);
+    } catch (err: any) {
+      return res.status(403).json({ message: err.message });
+    }
+  }
+}
