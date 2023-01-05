@@ -11,9 +11,10 @@ import { ClientsActions } from "../../pages/Clients/actions";
 
 type ClientProp = {
   client: ClientDTO;
+  loadClients: Function;
 };
 
-function ClientCard({ client }: ClientProp) {
+function ClientCard({ client, loadClients }: ClientProp) {
   const [openFormUpdate, setOpenFormUpdate] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
   const [response, setResponse] = useState("");
@@ -34,6 +35,7 @@ function ClientCard({ client }: ClientProp) {
     let response = await actions.deleteClient(client);
     setResponse(response);
     setOpenDelete(false);
+    loadClients();
   };
 
   return (
@@ -71,7 +73,9 @@ function ClientCard({ client }: ClientProp) {
         )}
         <div className="client_name">{client.name}</div>
         <div className="client_document"> {client.document}</div>
-        {openFormUpdate && <ClientUpdateForm client={client} />}
+        {openFormUpdate && (
+          <ClientUpdateForm client={client} loadClients={loadClients} />
+        )}
       </article>
     </>
   );

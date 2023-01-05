@@ -64,7 +64,13 @@ function Clients() {
             ) : (
               clientsList &&
               clientsList.map((client, index) => {
-                return <ClientCard key={index} client={client} />;
+                return (
+                  <ClientCard
+                    key={index}
+                    client={client}
+                    loadClients={loadClients}
+                  />
+                );
               })
             )}
           </div>

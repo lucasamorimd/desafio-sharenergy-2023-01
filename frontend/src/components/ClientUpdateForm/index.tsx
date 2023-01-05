@@ -5,8 +5,9 @@ import { ClientsActions } from "../../pages/Clients/actions";
 import "./styles.css";
 type ClientUpdateFormType = {
   client: ClientDTO;
+  loadClients: Function;
 };
-function ClientUpdateForm({ client }: ClientUpdateFormType) {
+function ClientUpdateForm({ client, loadClients }: ClientUpdateFormType) {
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState("");
   const actions = new ClientsActions();
@@ -25,6 +26,7 @@ function ClientUpdateForm({ client }: ClientUpdateFormType) {
     let response = await actions.updateClient(data);
     setResponse(response);
     setIsLoading(false);
+    loadClients();
   };
   return (
     <div className="updateArea">
