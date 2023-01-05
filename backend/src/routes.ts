@@ -11,6 +11,10 @@ router.post("/client/create", (req: Request, res: Response) => {
   return createClientController.run(req, res);
 });
 
+router.post("/login", (req: Request, res: Response) => {
+  return res.status(200).send("logado");
+});
+
 router.get("/client/list", (req: Request, res: Response) => {
   return listClientsController.run(req, res);
 });

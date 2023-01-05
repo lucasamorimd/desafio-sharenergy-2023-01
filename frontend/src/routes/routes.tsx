@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { RequireAuth } from "../handlers/RequireAuth";
 import { CatHttp } from "../pages/CatHttp";
 import { Clients } from "../pages/Clients";
 import { Home } from "../pages/Home";
@@ -9,11 +10,41 @@ import { RandomDogs } from "../pages/RandomDogs";
 function RoutesList() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/cat-http" element={<CatHttp />} />
-      <Route path="/random-dogs" element={<RandomDogs />} />
-      <Route path="/clients" element={<Clients />} />
+
+      <Route
+        path="/"
+        element={
+          <RequireAuth>
+            <Home />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/cat-http"
+        element={
+          <RequireAuth>
+            <CatHttp />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/random-dogs"
+        element={
+          <RequireAuth>
+            <RandomDogs />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/clients"
+        element={
+          <RequireAuth>
+            <Clients />
+          </RequireAuth>
+        }
+      />
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
