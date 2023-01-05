@@ -25,5 +25,22 @@ class ClientsActions {
       return err.response.data.message;
     }
   }
+
+  async updateClient(client: ClientDTO) {
+    try {
+      let response = await this.requestApi.put("/client/update", client);
+      return response.message;
+    } catch (err: any) {
+      return err.response.data.message;
+    }
+  }
+  async deleteClient(client: ClientDTO) {
+    try {
+      let response = await this.requestApi.delete("/client/delete", client.id);
+      return response.message;
+    } catch (err: any) {
+      return err.response.data.message;
+    }
+  }
 }
 export { ClientsActions };

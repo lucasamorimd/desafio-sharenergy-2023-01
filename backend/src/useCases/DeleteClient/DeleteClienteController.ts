@@ -6,7 +6,7 @@ export class DeleteClientController {
 
   async run(req: Request, res: Response): Promise<Response> {
     try {
-      const id: string = req.body.id;
+      const id: string = req.params.id;
 
       await this.deleteClientUseCase.exeucte(id);
 

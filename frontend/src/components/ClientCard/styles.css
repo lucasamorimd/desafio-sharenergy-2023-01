@@ -1,0 +1,57 @@
+article .client_data {
+    display: flex;
+}
+
+article .client_email {
+    background-color: #2b4c99;
+    color: #FFF;
+    font-size: 12px;
+    padding: 10px;
+    margin-right: 2px;
+}
+
+article .client_name {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    color: #000;
+    font-size: 23px;
+}
+
+article .client_button {
+    font-size: 12px;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 3px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+}
+
+article .client_button:hover {
+    transform: scale(1.1);
+
+}
+
+.warning {
+    background-color: rgb(255, 255, 170);
+    color: #000;
+    font-weight: bolder;
+}
+
+.danger {
+    background-color: rgb(255, 129, 129);
+    color: #000;
+    font-weight: bolder;
+}
+
+article .client_document {
+    font-size: 14px;
+    line-height: 20px;
+    color: #5c5c5c;
+    margin-bottom: 30px;
+}
+
+.deleteArea {
+    margin: 10px 0;
+    display: flex;
+}

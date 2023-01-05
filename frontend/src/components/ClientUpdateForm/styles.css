@@ -1,0 +1,40 @@
+.updateArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.updateArea button {
+    border: 1px solid #ccc;
+    background-color: #39aae1;
+    color: #fff;
+    border-radius: 5px;
+    margin-right: 2px;
+    font-size: 12px;
+    padding: 10px;
+    transition: all .2s ease-in-out;
+}
+
+.pagination button:hover,
+.updateArea button:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+
+.updateArea input {
+    margin-right: 10px;
+    padding: 8px;
+    flex: 1;
+    border: 1px solid;
+    border-color: #39aae1;
+    border-radius: 5px;
+    transition: all .2s ease-in-out;
+    height: 18px;
+}
+
+.updateArea input:focus {
+    transform: scale(1.03);
+}

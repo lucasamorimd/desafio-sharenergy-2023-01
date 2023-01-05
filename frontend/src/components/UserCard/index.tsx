@@ -24,6 +24,7 @@ function UserCard({ user }: UserProp) {
 
   return (
     <article
+      className="user_card"
       onClick={() => {
         handleUserThumb(user.picture.large);
       }}

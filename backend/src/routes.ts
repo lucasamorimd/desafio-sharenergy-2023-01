@@ -23,7 +23,7 @@ router.put("/client/update", (req: Request, res: Response) => {
   return updateClientController.run(req, res);
 });
 
-router.delete("/client/delete", (req: Request, res: Response) => {
+router.delete("/client/delete/:id", (req: Request, res: Response) => {
   return deleteClientController.run(req, res);
 });
 

@@ -10,6 +10,7 @@ function Clients() {
   const [isLoading, setIsLoading] = useState(false);
   const [clientsList, setClientsList] = useState<ClientDTO[]>();
   const [response, setResponse] = useState("");
+  const [showFormNewClient, setShowFormNewClient] = useState(false);
   const {
     register,
     handleSubmit,
@@ -69,43 +70,57 @@ function Clients() {
           </div>
         </div>
       </section>
+
       <SideMenu
         filter={
           <div className="searchArea column">
-            <div>{isLoading ? response && response : ""}</div>
-            <button>Novo Cliente</button>
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="client_form flex column"
-              method="POST"
+            <div>{response && response}</div>
+            <button
+              onClick={() => {
+                setShowFormNewClient(!showFormNewClient);
+              }}
             >
-              <label htmlFor="name">Nome</label>
-              <input id="name" {...register("name")} type="text" required />
-              <label htmlFor="email">Email</label>
-              <input id="email" {...register("email")} type="email" required />
-              <label htmlFor="address">Endereço</label>
-              <input
-                id="address"
-                {...register("address")}
-                type="text"
-                required
-              />
-              <label htmlFor="telephone">Telefone</label>
-              <input
-                id="telephone"
-                {...register("telephone")}
-                type="tel"
-                required
-              />
-              <label htmlFor="document">CPF</label>
-              <input
-                id="document"
-                {...register("document")}
-                type="text"
-                required
-              />
-              <button>Salvar</button>
-            </form>
+              Novo Cliente
+            </button>
+            {showFormNewClient && (
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="client_form flex column"
+                method="POST"
+              >
+                <label htmlFor="name">Nome</label>
+                <input id="name" {...register("name")} type="text" required />
+                <label htmlFor="email">Email</label>
+                <input
+                  id="email"
+                  {...register("email")}
+                  type="email"
+                  required
+                />
+                <label htmlFor="address">Endereço</label>
+                <input
+                  id="address"
+                  {...register("address")}
+                  type="text"
+                  required
+                />
+                <label htmlFor="telephone">Telefone</label>
+                <input
+                  id="telephone"
+                  {...register("telephone")}
+                  type="tel"
+                  required
+                />
+                <label htmlFor="document">CPF</label>
+                <input
+                  id="document"
+                  {...register("document")}
+                  type="text"
+                  required
+                />
+                <button>Salvar</button>
+              </form>
+            )}
           </div>
         }
       />
