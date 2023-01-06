@@ -5,10 +5,14 @@ import { GetOneClientController } from "../useCases/GetOneClient/GetOneClientCon
 import { GetOneClientUseCase } from "../useCases/GetOneClient/GetOneClientUseCase";
 
 const mongoModel = new ClientModel();
+
 const clientRepository = new ClientsRepository(mongoModel.getModel());
+
 // Testar a substituição de um repository por outro
 // const clientRepositoryPostgres = new ClientRepository();
+
 const getOneClientUseCase = new GetOneClientUseCase(clientRepository);
+
 const getOneClientController = new GetOneClientController(getOneClientUseCase);
 
 export { getOneClientController };

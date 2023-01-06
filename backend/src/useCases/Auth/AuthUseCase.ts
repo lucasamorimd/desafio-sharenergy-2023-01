@@ -1,9 +1,10 @@
 import { UserDTO } from "../../dto/UserDTO";
-import { AuthType, IUserRepository } from "../../repositories/IUserRepository";
+import { IUserRepository } from "../../repositories/IUserRepository";
 import { Buffer } from "buffer";
+import { authType } from "../../types/authType";
 export class AuthUseCase {
   constructor(private userRepository: IUserRepository) {}
-  async execute(data: AuthType): Promise<UserDTO> {
+  async execute(data: authType): Promise<UserDTO> {
     const user = await this.userRepository.findToAuth(data);
 
     if (user === null) {

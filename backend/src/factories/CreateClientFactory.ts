@@ -5,10 +5,14 @@ import { CreateClientController } from "../useCases/CreateClient/CreateClientCon
 import { CreateClientUseCase } from "../useCases/CreateClient/CreateClientUseCase";
 
 const mongoModel = new ClientModel();
+
 const clientRepository = new ClientsRepository(mongoModel.getModel());
+
 // Testar a substituição de um repository por outro
 // const clientRepositoryPostgres = new ClientRepository();
+
 const createClientUseCase = new CreateClientUseCase(clientRepository);
+
 const createClientController = new CreateClientController(createClientUseCase);
 
 export { createClientController };

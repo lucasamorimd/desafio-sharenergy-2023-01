@@ -5,10 +5,14 @@ import { DeleteClientController } from "../useCases/DeleteClient/DeleteClienteCo
 import { DeleteClientUseCase } from "../useCases/DeleteClient/DeleteClientUseCase";
 
 const mongoModel = new ClientModel();
+
 const clientRepository = new ClientsRepository(mongoModel.getModel());
+
 // Testar a substituição de um repository por outro
 // const clientRepositoryPostgres = new ClientRepository();
+
 const deleteClientUseCase = new DeleteClientUseCase(clientRepository);
+
 const deleteClientController = new DeleteClientController(deleteClientUseCase);
 
 export { deleteClientController };

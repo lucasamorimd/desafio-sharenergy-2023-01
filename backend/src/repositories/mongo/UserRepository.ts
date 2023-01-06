@@ -1,14 +1,12 @@
 import { Model } from "mongoose";
 import { User } from "../../entities/User";
+import { authType } from "../../types/authType";
+import { verifyToken } from "../../types/verifyTokenType";
 
-import { AuthType, IUserRepository } from "../IUserRepository";
+import { IUserRepository } from "../IUserRepository";
 
 export class UserRepository implements IUserRepository {
   constructor(private model: Model<User>) {}
-
-  async list(): Promise<User[]> {
-    return await this.model.find();
-  }
 
   async findByEmail(email: string): Promise<User | null> {
     return await this.model.findOne({ email });
@@ -18,11 +16,19 @@ export class UserRepository implements IUserRepository {
     return await this.model.findOne({ id: id });
   }
 
-  async findToAuth(data: AuthType): Promise<User | null> {
+  async findToAuth(data: authType): Promise<User | null> {
     return await this.model.findOne({
       userName: data.userName,
       password: data.password,
     });
+  }
+
+  async list(): Promise<User[]> {
+    return await this.model.find();
+  }
+
+  async verifyToken(data: verifyToken): Promise<User | null> {
+    return await this.model.findOne({ data });
   }
 
   async save(user: User): Promise<void> {

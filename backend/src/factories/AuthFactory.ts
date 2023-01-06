@@ -1,3 +1,4 @@
+import { VerifyToken } from "../handlers/VerifyToken";
 import UserModel from "../repositories/mongo/Models/User";
 
 import { UserRepository } from "../repositories/mongo/UserRepository";
@@ -14,4 +15,6 @@ const authUseCase = new AuthUseCase(userRepository);
 
 const authController = new AuthController(authUseCase);
 
-export { authController };
+const verifyToken = new VerifyToken(userRepository);
+
+export { authController, verifyToken };

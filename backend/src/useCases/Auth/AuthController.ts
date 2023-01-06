@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
-import { AuthType } from "../../repositories/IUserRepository";
+import { authType } from "../../types/authType";
+
 import { AuthUseCase } from "./AuthUseCase";
 
 export class AuthController {
   constructor(private authUseCase: AuthUseCase) {}
   async run(req: Request, res: Response): Promise<Response> {
     try {
-      let data: AuthType = req.body;
+      let data: authType = req.body;
       let response = await this.authUseCase.execute(data);
       return res
         .status(200)

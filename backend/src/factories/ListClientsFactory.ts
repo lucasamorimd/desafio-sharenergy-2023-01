@@ -5,10 +5,14 @@ import { ListClientsController } from "../useCases/ListClients/ListClientsContro
 import { ListClientsUseCase } from "../useCases/ListClients/ListClientsUseCase";
 
 const mongoModel = new ClientModel();
+
 const clientRepository = new ClientsRepository(mongoModel.getModel());
+
 // Testar a substituição de um repository por outro
 // const clientRepositoryPostgres = new ClientRepository();
+
 const listClientsUseCase = new ListClientsUseCase(clientRepository);
+
 const listClientsController = new ListClientsController(listClientsUseCase);
 
 export { listClientsController };

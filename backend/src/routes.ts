@@ -1,5 +1,5 @@
-import { Request, Response, Router } from "express";
-import { authController } from "./factories/AuthFactory";
+import { NextFunction, Request, Response, Router } from "express";
+import { authController, verifyToken } from "./factories/AuthFactory";
 import { createClientController } from "./factories/CreateClientFactory";
 import { deleteClientController } from "./factories/DeleteClientFactory";
 import { getOneClientController } from "./factories/GetOneClientFactory";
@@ -16,9 +16,15 @@ router.post("/login", (req: Request, res: Response) => {
   return authController.run(req, res);
 });
 
-router.get("/client/list", (req: Request, res: Response) => {
-  return listClientsController.run(req, res);
-});
+router.get(
+  "/client/list",
+  (req: Request, res: Response, next: NextFunction) => {
+    return verifyToken.run(req, res, next);
+  },
+  (req: Request, res: Response) => {
+    return listClientsController.run(req, res);
+  }
+);
 
 router.get("/client/:id", (req: Request, res: Response) => {
   return getOneClientController.run(req, res);

@@ -10,7 +10,7 @@ const mongoConnect = async () => {
     await connect(process.env.MONGO_URL as string);
     console.log("Conectado");
   } catch (error) {
-    console.log("Erro na conexção com o MongoDB:", error);
+    console.log("Erro na conexão com o MongoDB:", error);
   }
 };
 
