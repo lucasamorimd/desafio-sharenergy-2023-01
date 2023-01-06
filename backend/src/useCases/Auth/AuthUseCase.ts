@@ -24,6 +24,7 @@ export class AuthUseCase {
       userName: user.name,
       userNickName: user.userName,
       token: hash,
+      created_at: user.created_at,
     };
     return authUser;
   }

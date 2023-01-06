@@ -9,9 +9,12 @@ class ClientsActions {
     const clientFactory = new AxiosFactory(base_url);
     this.requestApi = clientFactory.create();
   }
-  async getClientList() {
+  async getClientList(page: number) {
     try {
-      let response = await this.requestApi.get("/client/list");
+      let response = await this.requestApi.get("/client/list", {
+        page: page,
+        perPage: 10,
+      });
       return response;
     } catch (err: any) {
       return err.response.data.message;

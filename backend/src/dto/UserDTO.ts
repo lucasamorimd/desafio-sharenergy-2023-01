@@ -3,4 +3,5 @@ export interface UserDTO {
   email: string;
   token: string;
   userNickName: string;
+  created_at: string;
 }

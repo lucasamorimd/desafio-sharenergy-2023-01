@@ -5,4 +5,5 @@ export interface ClientDTO {
   address: string;
   telephone: string;
   document: string;
+  created_at: string;
 }

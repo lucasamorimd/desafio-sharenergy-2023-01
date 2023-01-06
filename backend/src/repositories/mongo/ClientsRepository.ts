@@ -5,8 +5,13 @@ import { IClientsRepository } from "../IClientsRepository";
 export class ClientsRepository implements IClientsRepository {
   constructor(private model: Model<Client>) {}
 
-  async list(): Promise<Client[]> {
-    return await this.model.find();
+  async list(page: number = 1, perPage: number = 10): Promise<Client[]> {
+    const skip = perPage * (page - 1);
+    return await this.model
+      .find()
+      .sort({ created_at: 1, id: 1 })
+      .skip(skip)
+      .limit(perPage);
   }
 
   async findByEmail(email: string): Promise<Client | null> {

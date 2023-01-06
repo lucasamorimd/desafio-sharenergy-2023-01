@@ -15,6 +15,7 @@ function Clients() {
   const [clientsList, setClientsList] = useState<ClientDTO[]>();
   const [response, setResponse] = useState("");
   const [showFormNewClient, setShowFormNewClient] = useState(false);
+  const [page, setPage] = useState(1);
   const {
     register,
     handleSubmit,
@@ -35,7 +36,7 @@ function Clients() {
 
   const loadClients = async () => {
     setIsLoading(true);
-    let { data } = await actions.getClientList();
+    let { data } = await actions.getClientList(page);
     console.log(data);
     setClientsList(data);
     setIsLoading(false);
