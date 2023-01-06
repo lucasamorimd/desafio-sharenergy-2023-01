@@ -7,8 +7,6 @@ class ClientsActions {
   constructor() {
     const base_url = "http://localhost:5000";
     const clientFactory = new AxiosFactory(base_url);
-    clientFactory.getInstance().defaults.headers.Authorization =
-      sessionStorage.getItem("token") || sessionStorage.getItem("token");
     this.requestApi = clientFactory.create();
   }
   async getClientList() {
