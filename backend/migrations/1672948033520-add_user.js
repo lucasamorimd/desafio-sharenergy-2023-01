@@ -8,7 +8,8 @@ async function up() {
   console.log(User);
   await User.create({
     id: "asdf-3206-fdsa8-asdf",
-    name: "desafiosharenergy",
+    userName: "desafiosharenergy",
+    name: "Sharenergy User",
     email: "desafiosharenergy@email.com",
     password: "sh@r3n3rgy",
   });

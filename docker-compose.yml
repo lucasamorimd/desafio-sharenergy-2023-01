@@ -33,7 +33,7 @@ services:
       - mongo
     networks:
       - mern-app
-    command: npm run migrate
+    entrypoint: ./docker-entrypoint.sh
   #MONGO-DB
   mongo:
     image: mongo:latest

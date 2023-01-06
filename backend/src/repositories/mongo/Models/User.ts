@@ -5,6 +5,7 @@ import { IMongoModel } from "./IMongoModel";
 export default class UserModel implements IMongoModel {
   schema: Schema = new Schema<User>({
     id: { type: String, required: true },
+    userName: { type: String, required: true },
     name: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },

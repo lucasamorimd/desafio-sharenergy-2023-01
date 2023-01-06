@@ -1,8 +1,7 @@
 import { Model } from "mongoose";
-import { UserDTO } from "../../dto/UserDTO";
 import { User } from "../../entities/User";
 
-import { IUserRepository } from "../IUserRepository";
+import { AuthType, IUserRepository } from "../IUserRepository";
 
 export class UserRepository implements IUserRepository {
   constructor(private model: Model<User>) {}
@@ -19,10 +18,10 @@ export class UserRepository implements IUserRepository {
     return await this.model.findOne({ id: id });
   }
 
-  async findToAuth(user: UserDTO): Promise<User | null> {
+  async findToAuth(data: AuthType): Promise<User | null> {
     return await this.model.findOne({
-      email: user.email,
-      password: user.password,
+      userName: data.userName,
+      password: data.password,
     });
   }
 
