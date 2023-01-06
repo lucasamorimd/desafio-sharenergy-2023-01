@@ -1,7 +1,7 @@
 interface AuthDTO {
-  name?: string;
+  userName: string;
   email: string;
-  password?: string;
-  token?: string;
+  token: string;
+  userNickName: string;
 }
 export type { AuthDTO };

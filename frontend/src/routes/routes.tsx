@@ -10,8 +10,6 @@ import { RandomDogs } from "../pages/RandomDogs";
 function RoutesList() {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-
       <Route
         path="/"
         element={
@@ -20,6 +18,7 @@ function RoutesList() {
           </RequireAuth>
         }
       />
+      <Route path="/login" element={<Login />} />
       <Route
         path="/cat-http"
         element={

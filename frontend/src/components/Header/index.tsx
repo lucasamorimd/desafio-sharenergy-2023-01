@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { Context } from "../../contexts/auth";
 import "./styles.css";
 function Header() {
+  const { state, logout } = useContext(Context);
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  console.log(window.innerWidth);
   useEffect(() => {
     if (window.innerWidth < 600) {
       setIsMobile(true);
@@ -17,12 +18,18 @@ function Header() {
       setMobileMenuActive(!mobileMenuActive);
     }
   };
+
+  const handdleLogout = () => {
+    logout();
+  };
+
   return (
     <header>
       <div className="container">
         <div className="logo">
           <a href="#">Sharenergy</a>
         </div>
+        <div className="wellcome">seja bem vindo {state.auth.userName}</div>
         <div className="menu">
           <nav>
             <div className="menu-mobile" onClick={showMenu}>
@@ -77,7 +84,9 @@ function Header() {
                 </Link>
               </li>
               <li>
-                <Link to="#">Logout</Link>
+                <Link to="/login" onClick={handdleLogout}>
+                  Logout
+                </Link>
               </li>
             </ul>
           </nav>

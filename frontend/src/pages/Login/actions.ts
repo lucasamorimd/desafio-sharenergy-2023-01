@@ -1,8 +1,6 @@
-import { useContext } from "react";
-import { Context } from "../../contexts/auth";
-import { AuthDTO } from "../../dto/AuthDTO";
 import { AxiosFactory } from "../../services/Axios/Factory";
 import { IRequest } from "../../services/Axios/Request";
+import { responses } from "../../types/responses";
 
 class LoginActions {
   private requestApi: IRequest;
@@ -11,20 +9,14 @@ class LoginActions {
     const clientFactory = new AxiosFactory(base_url);
     this.requestApi = clientFactory.create();
   }
-  async authenticate(data: AuthDTO): Promise<AuthDTO> {
+  async authenticate(userName: string, password: string): Promise<responses> {
+    let data = { userName, password };
     try {
       let response = await this.requestApi.post("/login", data);
-      return response;
+      return { data: response.data, message: response.message };
     } catch (err: any) {
-      return err.response.data.message;
+      return { data: null, message: err.response.data.message };
     }
-  }
-  verifyIsRemember() {
-    const { state, dispatch } = useContext(Context);
-    if (state.auth.remember_me) {
-      return true;
-    }
-    return false;
   }
 }
 export { LoginActions };

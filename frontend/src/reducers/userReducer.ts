@@ -1,41 +1,44 @@
+import { authType } from "../types/authType";
 import { reducerActionType } from "../types/reducerActionType";
 
-type AuthType = {
-  user_name: string;
-  user_email: string;
-  token: string;
-  is_logged: boolean;
-  remember_me: boolean;
+const getAuthInitialState = <authType>() => {
+  let user = sessionStorage.getItem("user") || localStorage.getItem("user");
+  if (!user) {
+    return {
+      userName: "",
+      userNickName: "",
+      userEmail: "",
+      token: "",
+      isLogged: false,
+      rememberMe: false,
+    };
+  }
+  return JSON.parse(user);
 };
 
-const authInitialState: AuthType = {
-  user_name: "",
-  user_email: "",
-  token: "",
-  is_logged: false,
-  remember_me: false,
-};
+const authInitialState: authType = getAuthInitialState();
 
-const authReducer = (state: AuthType, action: reducerActionType) => {
+const authReducer = (state: authType, action: reducerActionType) => {
   switch (action.type) {
     case "CHANGE_USER_NAME":
-      return { ...state, user_name: action.payload.user_name };
+      return { ...state, userName: action.payload.userName };
+      break;
+    case "CHANGE_USER_NICKNAME":
+      return { ...state, userNickName: action.payload.userNickName };
       break;
     case "CHANGE_USER_EMAIL":
-      return { ...state, user_email: action.payload.user_email };
+      return { ...state, userEmail: action.payload.userEmail };
       break;
     case "CHANGE_TOKEN":
       return { ...state, token: action.payload.token };
       break;
     case "CHANGE_IS_LOGGED":
-      return { ...state, is_logged: action.payload.is_logged };
+      return { ...state, isLogged: action.payload.isLogged };
       break;
     case "CHANGE_REMEMBER_ME":
-      return { ...state, remember_me: action.payload.remember_me };
+      return { ...state, rememberMe: action.payload.rememberMe };
       break;
   }
   return state;
 };
-
-export type { AuthType };
 export { authInitialState, authReducer };

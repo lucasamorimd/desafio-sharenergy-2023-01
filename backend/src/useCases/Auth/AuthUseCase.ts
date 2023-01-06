@@ -20,8 +20,8 @@ export class AuthUseCase {
 
     const authUser: UserDTO = {
       email: user.email,
-      name: user.name,
-      userName: user.userName,
+      userName: user.name,
+      userNickName: user.userName,
       token: hash,
     };
     return authUser;
