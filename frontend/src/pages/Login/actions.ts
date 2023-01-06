@@ -1,3 +1,4 @@
+import { AxiosInstance } from "axios";
 import { AxiosFactory } from "../../services/Axios/Factory";
 import { IRequest } from "../../services/Axios/Request";
 import { responses } from "../../types/responses";

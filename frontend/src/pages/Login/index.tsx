@@ -19,8 +19,10 @@ function Login() {
   const authenticated = () => {
     if (state.auth.isLogged) {
       sessionStorage.setItem("user", JSON.stringify(state.auth));
+      sessionStorage.setItem("token", state.auth.token);
       if (state.auth.rememberMe) {
         localStorage.setItem("user", JSON.stringify(state.auth));
+        localStorage.setItem("token", state.auth.token);
       }
       navigate("/");
     }

@@ -1,11 +1,8 @@
-import axios, { AxiosInstance } from "axios";
+import { AxiosInstance } from "axios";
 import { IClient, IParamsClient } from "../IClient";
 
 class Client implements IClient {
-  private client!: AxiosInstance;
-  constructor(base_url: string) {
-    this.client = axios.create({ baseURL: base_url });
-  }
+  constructor(private client: AxiosInstance) {}
   async get(data: IParamsClient): Promise<any> {
     return await this.client.get(data.url, { params: data.params });
   }
