@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Context } from "../../contexts/auth";
 import "./styles.css";
 function Header() {
-  const { state, logout } = useContext(Context);
+  const { logout } = useContext(Context);
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -29,7 +29,6 @@ function Header() {
         <div className="logo">
           <a href="#">Sharenergy</a>
         </div>
-        <div className="wellcome">seja bem vindo {state.auth.userName}</div>
         <div className="menu">
           <nav>
             <div className="menu-mobile" onClick={showMenu}>

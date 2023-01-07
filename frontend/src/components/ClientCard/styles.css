@@ -1,6 +1,20 @@
+.client_card {
+    transition: all .3s ease-in-out;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding: 4px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.client_card:hover {
+    transform: scale(1.02);
+}
+
 article .client_data {
     display: flex;
+    justify-content: center;
 }
+
 
 article .client_email {
     background-color: #2b4c99;
@@ -11,8 +25,8 @@ article .client_email {
 }
 
 article .client_name {
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin: 10px 0;
+    padding-left: 10px;
     color: #000;
     font-size: 23px;
 }
@@ -48,7 +62,8 @@ article .client_document {
     font-size: 14px;
     line-height: 20px;
     color: #5c5c5c;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    padding-left: 10px;
 }
 
 .deleteArea {

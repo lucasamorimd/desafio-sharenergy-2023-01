@@ -38,6 +38,12 @@ function ClientCard({ client, loadClients }: ClientProp) {
     loadClients();
   };
 
+  const getDate = ({ created_at }: ClientDTO) => {
+    return `${client.created_at?.day}/${client.created_at?.month}/
+    ${client.created_at?.year} - ${client.created_at?.hour}:
+    ${client.created_at?.minutes}`;
+  };
+
   return (
     <>
       <article className="client_card">
@@ -73,6 +79,7 @@ function ClientCard({ client, loadClients }: ClientProp) {
         )}
         <div className="client_name">{client.name}</div>
         <div className="client_document"> {client.document}</div>
+        <div className="client_document">Criado em {getDate(client)}</div>
         {openFormUpdate && (
           <ClientUpdateForm client={client} loadClients={loadClients} />
         )}

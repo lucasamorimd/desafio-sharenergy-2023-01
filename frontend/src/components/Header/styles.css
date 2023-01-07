@@ -76,6 +76,10 @@ nav a:hover {
         flex-direction: row;
     }
 
+    .wellcome {
+        display: none;
+    }
+
     nav ul {
         flex-direction: column;
         display: none;
