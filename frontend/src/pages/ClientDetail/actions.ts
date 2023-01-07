@@ -1,0 +1,2 @@
+class ClientDetailActions {}
+export { ClientDetailActions };

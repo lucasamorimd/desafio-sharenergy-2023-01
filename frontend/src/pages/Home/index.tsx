@@ -5,43 +5,40 @@ import { SideMenu } from "../../components/SideMenu";
 import { UserDTO } from "../../dto/UserDTO";
 import { HomeActions } from "./actions";
 import { Header } from "../../components/Header";
+import { Pagination } from "../../components/Pagination";
 
 function Home() {
-  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [users, setUsers] = useState<UserDTO[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [filterUsers, setFilterUsers] = useState<UserDTO[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const actions = new HomeActions();
 
   useEffect(() => {
+    if (filterUsers) {
+      console.log(filterUsers);
+    }
     loadUsers();
   }, [page]);
 
-  useEffect(() => {
-    if (search == "") {
-      loadUsers();
-      return;
-    }
-    let filteredUsers = actions.filterUsers(users, search);
-    loadUsers(filteredUsers);
-  }, [search]);
-
-  const loadUsers = async (users?: UserDTO[]) => {
+  const loadUsers = async () => {
     setIsLoading(true);
-
-    if (!users) {
-      let { results } = await actions.getUsers(page);
-      setUsers(results);
-      setIsLoading(false);
-      return;
-    }
-
-    setUsers(users);
+    setFilterUsers([]);
+    const { results } = await actions.getUsers(page);
+    setUsers(results);
     setIsLoading(false);
   };
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value);
+    setIsSearching(true);
+    let filteredUsers = actions.filterUsers(users, event.target.value);
+    setIsLoading(true);
+    setFilterUsers(filteredUsers);
+    setIsLoading(false);
+    if (event.target.value === "") {
+      setIsSearching(false);
+    }
   };
 
   return (
@@ -58,10 +55,14 @@ function Home() {
               <div className="widget_body flex">
                 {isLoading ? (
                   <>Carregando...</>
+                ) : isSearching ? (
+                  filterUsers.map((item, index) => {
+                    return <UserCard user={item} key={index} />;
+                  })
                 ) : (
                   users &&
                   users.map((item, index) => {
-                    return <UserCard key={index} user={item} />;
+                    return <UserCard user={item} key={index} />;
                   })
                 )}
               </div>
@@ -69,31 +70,13 @@ function Home() {
           </section>
           <SideMenu>
             <>
-              <div className="pagination">
-                <button
-                  disabled={page === 1}
-                  onClick={() => {
-                    setPage(page - 1);
-                  }}
-                >
-                  &lt;
-                </button>
-                <button>{page}</button>
-                <button
-                  onClick={() => {
-                    setPage(page + 1);
-                  }}
-                >
-                  &gt;
-                </button>
-              </div>
+              <Pagination setPage={setPage} page={page} />
               <div className="searchArea">
                 <input
                   id="searchInput"
                   type="text"
-                  value={search}
                   onChange={handleSearch}
-                  placeholder="Digite um nome, email ou username"
+                  placeholder="Digite um nome, email ou nickname"
                 />
               </div>
             </>

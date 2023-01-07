@@ -18,7 +18,7 @@ function UserCard({ user }: UserProp) {
     }
   }, [isThumb]);
 
-  const handleUserThumb = (url: string) => {
+  const handleUserThumb = () => {
     setIsThumb(!isThumb);
   };
 
@@ -26,7 +26,7 @@ function UserCard({ user }: UserProp) {
     <article
       className="user_card"
       onClick={() => {
-        handleUserThumb(user.picture.large);
+        handleUserThumb();
       }}
     >
       <div className="user_data">
@@ -35,7 +35,7 @@ function UserCard({ user }: UserProp) {
       </div>
       <div className="user_thumb">
         <img
-          src={userThumb}
+          src={user.picture.large}
           style={!isThumb ? { width: "100%", height: "auto" } : {}}
         />
       </div>

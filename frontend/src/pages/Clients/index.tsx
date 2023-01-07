@@ -9,6 +9,7 @@ import { Header } from "../../components/Header";
 
 import { ClientDTO } from "../../dto/ClientDTO";
 import { ClientFormCreate } from "../../components/ClientFormCreate";
+import { Pagination } from "../../components/Pagination";
 
 function Clients() {
   const actions = new ClientsActions();
@@ -60,24 +61,7 @@ function Clients() {
 
           <SideMenu>
             <>
-              <div className="pagination">
-                <button
-                  disabled={page === 1}
-                  onClick={() => {
-                    setPage(page - 1);
-                  }}
-                >
-                  &lt;
-                </button>
-                <button>{page}</button>
-                <button
-                  onClick={() => {
-                    setPage(page + 1);
-                  }}
-                >
-                  &gt;
-                </button>
-              </div>
+              <Pagination setPage={setPage} page={page} />
               <div className="searchArea column">
                 <button
                   onClick={() => {
