@@ -1,6 +1,6 @@
 import { IRequest } from "./Axios/Request";
 
 interface IFactory {
-  create(): IRequest;
+  create(headers: boolean): IRequest;
 }
 export type { IFactory };

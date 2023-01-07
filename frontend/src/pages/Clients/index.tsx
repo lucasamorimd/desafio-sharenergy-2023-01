@@ -26,7 +26,7 @@ function Clients() {
 
   useEffect(() => {
     loadClients();
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     if (formState.isSubmitSuccessful) {
@@ -44,6 +44,11 @@ function Clients() {
 
   const onSubmit = (data: any) => {
     createClient(data);
+  };
+
+  const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    handleSubmit(onSubmit);
   };
 
   const createClient = async (newClient: ClientDTO) => {
@@ -87,60 +92,82 @@ function Clients() {
 
           <SideMenu
             filter={
-              <div className="searchArea column">
-                <div>{response && response}</div>
-                <button
-                  onClick={() => {
-                    setShowFormNewClient(!showFormNewClient);
-                  }}
-                >
-                  Novo Cliente
-                </button>
-                {showFormNewClient && (
-                  <form
-                    onSubmit={handleSubmit(onSubmit)}
-                    className="client_form flex column"
-                    method="POST"
+              <>
+                <div className="pagination">
+                  <button
+                    disabled={page === 1}
+                    onClick={() => {
+                      setPage(page - 1);
+                    }}
                   >
-                    <label htmlFor="name">Nome</label>
-                    <input
-                      id="name"
-                      {...register("name")}
-                      type="text"
-                      required
-                    />
-                    <label htmlFor="email">Email</label>
-                    <input
-                      id="email"
-                      {...register("email")}
-                      type="email"
-                      required
-                    />
-                    <label htmlFor="address">Endereço</label>
-                    <input
-                      id="address"
-                      {...register("address")}
-                      type="text"
-                      required
-                    />
-                    <label htmlFor="telephone">Telefone</label>
-                    <input
-                      id="telephone"
-                      {...register("telephone")}
-                      type="tel"
-                      required
-                    />
-                    <label htmlFor="document">CPF</label>
-                    <input
-                      id="document"
-                      {...register("document")}
-                      type="text"
-                      required
-                    />
-                    <button>Salvar</button>
-                  </form>
-                )}
-              </div>
+                    &lt;
+                  </button>
+                  <button>{page}</button>
+                  <button
+                    onClick={() => {
+                      setPage(page + 1);
+                    }}
+                  >
+                    &gt;
+                  </button>
+                </div>
+                <div className="searchArea column">
+                  <div>{response && response}</div>
+                  <button
+                    onClick={() => {
+                      setShowFormNewClient(!showFormNewClient);
+                    }}
+                  >
+                    Novo Cliente
+                  </button>
+                  {showFormNewClient && (
+                    <form
+                      onSubmit={(event) => {
+                        handleOnSubmit;
+                      }}
+                      className="client_form flex column"
+                      method="POST"
+                    >
+                      <label htmlFor="name">Nome</label>
+                      <input
+                        id="name"
+                        {...register("name")}
+                        type="text"
+                        required
+                      />
+                      <label htmlFor="email">Email</label>
+                      <input
+                        id="email"
+                        {...register("email")}
+                        type="email"
+                        required
+                      />
+                      <label htmlFor="address">Endereço</label>
+                      <input
+                        id="address"
+                        {...register("address")}
+                        type="text"
+                        required
+                      />
+                      <label htmlFor="telephone">Telefone</label>
+                      <input
+                        id="telephone"
+                        {...register("telephone")}
+                        type="tel"
+                        required
+                      />
+                      <label htmlFor="document">CPF</label>
+                      <input
+                        id="document"
+                        {...register("document")}
+                        type="text"
+                        required
+                      />
+                      <button>Salvar</button>
+                    </form>
+                  )}
+                </div>
+              </>
             }
           />
         </div>
