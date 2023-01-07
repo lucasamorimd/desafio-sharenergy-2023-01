@@ -24,6 +24,11 @@ article .client_email {
     margin-right: 2px;
 }
 
+article .client_email a {
+    color: #FFF;
+    text-decoration: none;
+}
+
 article .client_button {
     font-size: 12px;
     padding: 10px;
@@ -51,11 +56,10 @@ article .client_button:hover {
     font-weight: bolder;
 }
 
-
-
 .deleteArea {
     margin: 10px 0;
     display: flex;
+    justify-content: center;
 }
 
 article .client_name {

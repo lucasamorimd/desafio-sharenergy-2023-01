@@ -17,9 +17,6 @@ function Home() {
   const actions = new HomeActions();
 
   useEffect(() => {
-    if (filterUsers) {
-      console.log(filterUsers);
-    }
     loadUsers();
   }, [page]);
 

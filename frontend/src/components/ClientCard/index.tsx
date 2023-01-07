@@ -8,13 +8,14 @@ import { FiEdit2, FiTrash2 } from "react-icons/fi";
 
 import "./styles.css";
 import { ClientsActions } from "../../pages/Clients/actions";
+import { Link } from "react-router-dom";
 
 type ClientProp = {
   client: ClientDTO;
-  loadClients: Function;
+  load: Function;
 };
 
-function ClientCard({ client, loadClients }: ClientProp) {
+function ClientCard({ client, load }: ClientProp) {
   const [openFormUpdate, setOpenFormUpdate] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
   const [response, setResponse] = useState("");
@@ -31,11 +32,10 @@ function ClientCard({ client, loadClients }: ClientProp) {
   };
 
   const deleteClient = async (client: ClientDTO) => {
-    console.log(client);
     let response = await actions.deleteClient(client);
     setResponse(response);
     setOpenDelete(false);
-    loadClients();
+    load();
   };
 
   const getDate = ({ created_at }: ClientDTO) => {
@@ -48,7 +48,9 @@ function ClientCard({ client, loadClients }: ClientProp) {
     <>
       <article className="client_card">
         <div className="client_data">
-          <div className="client_email">{client.email}</div>
+          <div className="client_email">
+            <Link to={`/client/${client.id}`}>{client.email}</Link>
+          </div>
           <div className="client_button warning" onClick={handleOpenFormUpdate}>
             <FiEdit2 />
           </div>
@@ -56,7 +58,6 @@ function ClientCard({ client, loadClients }: ClientProp) {
             <FiTrash2 />
           </div>
         </div>
-        {response && <div className="deleteArea">{response}</div>}
         {openDelete && (
           <div className="deleteArea">
             <button
@@ -81,7 +82,7 @@ function ClientCard({ client, loadClients }: ClientProp) {
         <div className="client_document"> {client.document}</div>
         <div className="client_document">Criado em {getDate(client)}</div>
         {openFormUpdate && (
-          <ClientUpdateForm client={client} loadClients={loadClients} />
+          <ClientUpdateForm client={client} loadClients={load} />
         )}
       </article>
     </>

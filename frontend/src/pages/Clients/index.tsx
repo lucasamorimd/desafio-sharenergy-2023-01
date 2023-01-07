@@ -24,7 +24,6 @@ function Clients() {
 
   const loadClients = async () => {
     let { data } = await actions.getClientList(page);
-    console.log(data);
     setClientsList(data);
     setIsLoading(false);
   };
@@ -64,7 +63,9 @@ function Clients() {
                 >
                   Novo Cliente
                 </button>
-                {showFormNewClient && <ClientFormCreate />}
+                {showFormNewClient && (
+                  <ClientFormCreate loadClients={loadClients} />
+                )}
               </div>
             </>
           </SideMenu>
