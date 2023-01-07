@@ -4,6 +4,7 @@ import { RandomDogsActions } from "./actions";
 
 import { Header } from "../../components/Header";
 import { SideMenu } from "../../components/SideMenu";
+import { Widget } from "../../components/Widget";
 
 function RandomDogs() {
   const [randomDog, setRandomDog] = useState("");
@@ -30,25 +31,19 @@ function RandomDogs() {
       <section id="geral">
         <div className="container">
           <section>
-            <div className="widget">
-              <div className="widget_title">
-                <div className="widget_title_text">Dogs</div>
-                <div className="widget_title_bar"></div>
-              </div>
-              <div className="widget_body flex">
-                <article>
-                  <div className="dog_thumb">
-                    {isLoading ? (
-                      <>Carregando...</>
-                    ) : (
-                      randomDog && <img src={randomDog} />
-                    )}
-                  </div>
-                </article>
-              </div>
-            </div>
+            <Widget title="Doguinhos">
+              <article>
+                <div className="dog_thumb">
+                  {isLoading ? (
+                    <>Carregando...</>
+                  ) : (
+                    randomDog && <img src={randomDog} />
+                  )}
+                </div>
+              </article>
+            </Widget>
           </section>
-          <SideMenu>
+          <SideMenu title="Carregar Doguinho">
             <div className="searchArea">
               <button onClick={handleReload}>Reload</button>
             </div>

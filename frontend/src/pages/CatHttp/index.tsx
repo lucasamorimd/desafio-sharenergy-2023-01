@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Header } from "../../components/Header";
 import { SideMenu } from "../../components/SideMenu";
+import { Widget } from "../../components/Widget";
 import "./styles.css";
 function CatHttp() {
   const [status, setStatus] = useState("");
@@ -25,27 +26,21 @@ function CatHttp() {
       <section id="geral">
         <div className="container">
           <section>
-            <div className="widget">
-              <div className="widget_title">
-                <div className="widget_title_text">Cats</div>
-                <div className="widget_title_bar"></div>
-              </div>
-              <div className="widget_body flex">
-                <article>
-                  {isLoading ? (
-                    <>Carregando...</>
-                  ) : (
-                    catImage && (
-                      <div className="cat_thumb">
-                        <img src={catImage} />
-                      </div>
-                    )
-                  )}
-                </article>
-              </div>
-            </div>
+            <Widget title="Gatinhos HTTP">
+              <article>
+                {isLoading ? (
+                  <>Carregando...</>
+                ) : (
+                  catImage && (
+                    <div className="cat_thumb">
+                      <img src={catImage} />
+                    </div>
+                  )
+                )}
+              </article>
+            </Widget>
           </section>
-          <SideMenu>
+          <SideMenu title="Buscar">
             <>
               <div className="searchArea">
                 <input

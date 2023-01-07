@@ -6,6 +6,7 @@ import { UserDTO } from "../../dto/UserDTO";
 import { HomeActions } from "./actions";
 import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
+import { Widget } from "../../components/Widget";
 
 function Home() {
   const [page, setPage] = useState(1);
@@ -47,28 +48,22 @@ function Home() {
       <section id="geral">
         <div className="container">
           <section>
-            <div className="widget">
-              <div className="widget_title">
-                <div className="widget_title_text">Usuários</div>
-                <div className="widget_title_bar"></div>
-              </div>
-              <div className="widget_body flex">
-                {isLoading ? (
-                  <>Carregando...</>
-                ) : isSearching ? (
-                  filterUsers.map((item, index) => {
-                    return <UserCard user={item} key={index} />;
-                  })
-                ) : (
-                  users &&
-                  users.map((item, index) => {
-                    return <UserCard user={item} key={index} />;
-                  })
-                )}
-              </div>
-            </div>
+            <Widget title="Usuários">
+              {isLoading ? (
+                <>Carregando...</>
+              ) : isSearching ? (
+                filterUsers.map((item, index) => {
+                  return <UserCard user={item} key={index} />;
+                })
+              ) : (
+                users &&
+                users.map((item, index) => {
+                  return <UserCard user={item} key={index} />;
+                })
+              )}
+            </Widget>
           </section>
-          <SideMenu>
+          <SideMenu title="Busca e Páginas">
             <>
               <Pagination setPage={setPage} page={page} />
               <div className="searchArea">

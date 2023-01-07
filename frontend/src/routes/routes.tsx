@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { RequireAuth } from "../handlers/RequireAuth";
 import { CatHttp } from "../pages/CatHttp";
+import { ClientDetail } from "../pages/ClientDetail";
 import { Clients } from "../pages/Clients";
 import { Home } from "../pages/Home";
 import { Login } from "../pages/Login";
@@ -43,6 +44,7 @@ function RoutesList() {
           </RequireAuth>
         }
       />
+      <Route path="/client/:id" element={<ClientDetail />} />
 
       <Route path="*" element={<NotFound />} />
     </Routes>
