@@ -24,20 +24,30 @@ function ClientFormCreate() {
       onSubmit={(event) => {
         handleOnSubmit;
       }}
-      className="client_form flex column"
+      className="client_form"
       method="POST"
     >
-      <label htmlFor="name">Nome</label>
-      <input id="name" {...register("name")} type="text" required />
-      <label htmlFor="email">Email</label>
-      <input id="email" {...register("email")} type="email" required />
-      <label htmlFor="address">Endereço</label>
-      <input id="address" {...register("address")} type="text" required />
-      <label htmlFor="telephone">Telefone</label>
-      <input id="telephone" {...register("telephone")} type="tel" required />
-      <label htmlFor="document">CPF</label>
-      <input id="document" {...register("document")} type="text" required />
-      <button>Salvar</button>
+      <div className="inputAreaCreate">
+        <label htmlFor="name">Nome</label>
+        <input id="name" {...register("name")} type="text" required />
+      </div>
+      <div className="inputAreaCreate">
+        <label htmlFor="email">Email</label>
+        <input id="email" {...register("email")} type="email" required />
+      </div>
+      <div className="inputAreaCreate">
+        <label htmlFor="address">Endereço</label>
+        <input id="address" {...register("address")} type="text" required />
+      </div>
+      <div className="inputAreaCreate">
+        <label htmlFor="telephone">Telefone</label>
+        <input id="telephone" {...register("telephone")} type="tel" required />
+      </div>
+      <div className="inputAreaCreate">
+        <label htmlFor="document">CPF</label>
+        <input id="document" {...register("document")} type="text" required />
+      </div>
+      <button className="save_create">Salvar</button>
     </form>
   );
 }

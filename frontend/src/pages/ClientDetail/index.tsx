@@ -8,21 +8,16 @@ import "./styles.css";
 function ClientDetail() {
   const params = useParams();
   return (
-    <>
-      <Header />
-      <section id="geral">
-        <div className="container">
-          <section>
-            <Widget title="Detalhar Cliente">
-              <></>
-            </Widget>
-          </section>
-          <SideMenu title="">
-            <></>
-          </SideMenu>
-        </div>
+    <Header active="clients">
+      <section>
+        <Widget title="Detalhar Cliente">
+          <></>
+        </Widget>
       </section>
-    </>
+      <SideMenu title="">
+        <></>
+      </SideMenu>
+    </Header>
   );
 }
 export { ClientDetail };

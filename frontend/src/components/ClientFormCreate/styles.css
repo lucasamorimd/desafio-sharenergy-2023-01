@@ -1,12 +1,22 @@
 .client_form {
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-.client_form input {
-    margin-bottom: 10px;
+.inputAreaCreate {
+    display: flex;
+    flex-direction: column;
 }
 
-.client_form button {
+.save_create {
+    background-color: #39aae1;
+    border-color: #39aae1;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 12px;
+    height: 40px;
+    transition: all .2s ease-in-out;
     width: 50%;
     align-self: center;
     margin-top: 5px;

@@ -24,13 +24,6 @@ article .client_email {
     margin-right: 2px;
 }
 
-article .client_name {
-    margin: 10px 0;
-    padding-left: 10px;
-    color: #000;
-    font-size: 23px;
-}
-
 article .client_button {
     font-size: 12px;
     padding: 10px;
@@ -58,15 +51,24 @@ article .client_button:hover {
     font-weight: bolder;
 }
 
+
+
+.deleteArea {
+    margin: 10px 0;
+    display: flex;
+}
+
+article .client_name {
+    margin: 10px 0;
+    padding-left: 10px;
+    color: #000;
+    font-size: 23px;
+}
+
 article .client_document {
     font-size: 14px;
     line-height: 20px;
     color: #5c5c5c;
     margin-bottom: 10px;
     padding-left: 10px;
-}
-
-.deleteArea {
-    margin: 10px 0;
-    display: flex;
 }

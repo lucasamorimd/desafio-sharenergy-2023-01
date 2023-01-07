@@ -27,29 +27,26 @@ function RandomDogs() {
 
   return (
     <>
-      <Header />
-      <section id="geral">
-        <div className="container">
-          <section>
-            <Widget title="Doguinhos">
-              <article>
-                <div className="dog_thumb">
-                  {isLoading ? (
-                    <>Carregando...</>
-                  ) : (
-                    randomDog && <img src={randomDog} />
-                  )}
-                </div>
-              </article>
-            </Widget>
-          </section>
-          <SideMenu title="Carregar Doguinho">
-            <div className="searchArea">
-              <button onClick={handleReload}>Reload</button>
-            </div>
-          </SideMenu>
-        </div>
-      </section>
+      <Header active="dogs">
+        <section>
+          <Widget title="Doguinhos">
+            <article>
+              <div className="dog_thumb">
+                {isLoading ? (
+                  <>Carregando...</>
+                ) : (
+                  randomDog && <img src={randomDog} />
+                )}
+              </div>
+            </article>
+          </Widget>
+        </section>
+        <SideMenu title="Carregar Doguinho">
+          <div className="reloadAreaDog">
+            <button onClick={handleReload}>Reload</button>
+          </div>
+        </SideMenu>
+      </Header>
     </>
   );
 }

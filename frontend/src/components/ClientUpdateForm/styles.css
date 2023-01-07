@@ -6,25 +6,38 @@
     margin-bottom: 10px;
 }
 
-.updateArea button {
-    border: 1px solid #ccc;
-    background-color: #39aae1;
-    color: #fff;
-    border-radius: 5px;
-    margin-right: 2px;
-    font-size: 12px;
-    padding: 10px;
-    transition: all .2s ease-in-out;
+.updateArea .inputAreaUpdate {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-.pagination button:hover,
-.updateArea button:hover {
+.updateArea .save_update {
+    background-color: #39aae1;
+    border-color: #39aae1;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 12px;
+    height: 40px;
+    transition: all .2s ease-in-out;
+    width: 50%;
+    align-self: center;
+    margin-top: 5px;
+}
+
+.updateArea .client_form_update {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.updateArea .save_update:hover {
     cursor: pointer;
     transform: scale(1.2);
 }
 
 
-.updateArea input {
+.updateArea .inputAreaUpdate input {
     padding: 8px;
     flex: 1;
     border: 1px solid;

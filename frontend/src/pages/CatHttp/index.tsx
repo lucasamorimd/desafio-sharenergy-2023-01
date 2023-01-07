@@ -5,7 +5,7 @@ import { Widget } from "../../components/Widget";
 import "./styles.css";
 function CatHttp() {
   const [status, setStatus] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [catImage, setCatImage] = useState("");
 
   const handelStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -14,50 +14,45 @@ function CatHttp() {
 
   const handleCatImage = () => {
     if (status !== "") {
-      setIsLoading(true);
       setCatImage(`https://http.cat/${status}`);
       setIsLoading(false);
     }
   };
 
   return (
-    <>
-      <Header />
-      <section id="geral">
-        <div className="container">
-          <section>
-            <Widget title="Gatinhos HTTP">
-              <article>
-                {isLoading ? (
-                  <>Carregando...</>
-                ) : (
-                  catImage && (
-                    <div className="cat_thumb">
-                      <img src={catImage} />
-                    </div>
-                  )
-                )}
-              </article>
-            </Widget>
-          </section>
-          <SideMenu title="Buscar">
-            <>
-              <div className="searchArea">
-                <input
-                  id="searchInput"
-                  type="text"
-                  maxLength={3}
-                  value={status}
-                  onChange={handelStatus}
-                  placeholder="Digite um status code"
-                />
-                <button onClick={handleCatImage}>Buscar</button>
-              </div>
-            </>
-          </SideMenu>
-        </div>
+    <Header active="cats">
+      <section>
+        <Widget title="Gatinhos HTTP">
+          <article>
+            <div className="cat_thumb">
+              {isLoading ? (
+                <>
+                  <h1>Chame um gatinho</h1>
+                  <p>Digite um status ali na barra de buscar</p>
+                </>
+              ) : (
+                catImage && <img src={catImage} />
+              )}
+            </div>
+          </article>
+        </Widget>
       </section>
-    </>
+      <SideMenu title="Buscar">
+        <>
+          <div className="searchAreaCat">
+            <input
+              id="searchInput"
+              type="text"
+              maxLength={3}
+              value={status}
+              onChange={handelStatus}
+              placeholder="Digite um status code"
+            />
+            <button onClick={handleCatImage}>Buscar</button>
+          </div>
+        </>
+      </SideMenu>
+    </Header>
   );
 }
 export { CatHttp };

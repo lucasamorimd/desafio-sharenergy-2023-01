@@ -30,21 +30,36 @@ function ClientUpdateForm({ client, loadClients }: ClientUpdateFormType) {
     <div className="updateArea">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="client_form flex column"
+        className="client_form_update"
         method="POST"
       >
         {response && <span>{response}</span>}
-        <label htmlFor="name">Nome</label>
-        <input id="name" {...register("name")} type="text" required />
-        <label htmlFor="email">Email</label>
-        <input id="email" {...register("email")} type="email" required />
-        <label htmlFor="address">Endereço</label>
-        <input id="address" {...register("address")} type="text" required />
-        <label htmlFor="telephone">Telefone</label>
-        <input id="telephone" {...register("telephone")} type="tel" required />
-        <label htmlFor="document">CPF</label>
-        <input id="document" {...register("document")} type="text" required />
-        <button>Salvar</button>
+        <div className="inputAreaUpdate">
+          <label htmlFor="name">Nome</label>
+          <input id="name" {...register("name")} type="text" required />
+        </div>
+        <div className="inputAreaUpdate">
+          <label htmlFor="email">Email</label>
+          <input id="email" {...register("email")} type="email" required />
+        </div>
+        <div className="inputAreaUpdate">
+          <label htmlFor="address">Endereço</label>
+          <input id="address" {...register("address")} type="text" required />
+        </div>
+        <div className="inputAreaUpdate">
+          <label htmlFor="telephone">Telefone</label>
+          <input
+            id="telephone"
+            {...register("telephone")}
+            type="tel"
+            required
+          />
+        </div>
+        <div className="inputAreaUpdate">
+          <label htmlFor="document">CPF</label>
+          <input id="document" {...register("document")} type="text" required />
+        </div>
+        <button className="save_update">Salvar</button>
       </form>
     </div>
   );

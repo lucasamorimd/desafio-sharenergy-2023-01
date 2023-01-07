@@ -43,42 +43,37 @@ function Home() {
   };
 
   return (
-    <>
-      <Header />
-      <section id="geral">
-        <div className="container">
-          <section>
-            <Widget title="Usuários">
-              {isLoading ? (
-                <>Carregando...</>
-              ) : isSearching ? (
-                filterUsers.map((item, index) => {
-                  return <UserCard user={item} key={index} />;
-                })
-              ) : (
-                users &&
-                users.map((item, index) => {
-                  return <UserCard user={item} key={index} />;
-                })
-              )}
-            </Widget>
-          </section>
-          <SideMenu title="Busca e Páginas">
-            <>
-              <Pagination setPage={setPage} page={page} />
-              <div className="searchArea">
-                <input
-                  id="searchInput"
-                  type="text"
-                  onChange={handleSearch}
-                  placeholder="Digite um nome, email ou nickname"
-                />
-              </div>
-            </>
-          </SideMenu>
-        </div>
+    <Header active="home">
+      <section>
+        <Widget title="Usuários">
+          {isLoading ? (
+            <>Carregando...</>
+          ) : isSearching ? (
+            filterUsers.map((item, index) => {
+              return <UserCard user={item} key={index} />;
+            })
+          ) : (
+            users &&
+            users.map((item, index) => {
+              return <UserCard user={item} key={index} />;
+            })
+          )}
+        </Widget>
       </section>
-    </>
+      <SideMenu title="Busca e Páginas">
+        <>
+          <Pagination setPage={setPage} page={page} />
+          <div className="searchAreaHome">
+            <input
+              id="searchInput"
+              type="text"
+              onChange={handleSearch}
+              placeholder="Digite um nome, email ou nickname"
+            />
+          </div>
+        </>
+      </SideMenu>
+    </Header>
   );
 }
 export { Home };

@@ -30,8 +30,7 @@ function Clients() {
   };
 
   return (
-    <>
-      <Header />
+    <Header active="clients">
       <section id="geral">
         <div className="container">
           <section>
@@ -57,7 +56,7 @@ function Clients() {
           <SideMenu title="Ações">
             <>
               <Pagination setPage={setPage} page={page} />
-              <div className="searchArea column">
+              <div className="actionAreaClients column">
                 <button
                   onClick={() => {
                     setShowFormNewClient(!showFormNewClient);
@@ -71,7 +70,7 @@ function Clients() {
           </SideMenu>
         </div>
       </section>
-    </>
+    </Header>
   );
 }
 export { Clients };
