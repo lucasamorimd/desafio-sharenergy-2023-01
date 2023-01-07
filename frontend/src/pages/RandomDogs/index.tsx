@@ -48,13 +48,11 @@ function RandomDogs() {
               </div>
             </div>
           </section>
-          <SideMenu
-            filter={
-              <div className="searchArea">
-                <button onClick={handleReload}>Reload</button>
-              </div>
-            }
-          />
+          <SideMenu>
+            <div className="searchArea">
+              <button onClick={handleReload}>Reload</button>
+            </div>
+          </SideMenu>
         </div>
       </section>
     </>

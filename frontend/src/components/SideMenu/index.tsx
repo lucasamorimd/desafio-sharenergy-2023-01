@@ -1,8 +1,8 @@
 import "./styles.css";
 type SideMenuChield = {
-  filter: JSX.Element;
+  children: JSX.Element;
 };
-function SideMenu({ filter }: SideMenuChield) {
+function SideMenu({ children }: SideMenuChield) {
   return (
     <aside>
       <div className="widget">
@@ -10,7 +10,7 @@ function SideMenu({ filter }: SideMenuChield) {
           <div className="widget_title_text">Filtros</div>
           <div className="widget_title_bar"></div>
         </div>
-        <div className="widget_body flex filters">{filter}</div>
+        <div className="widget_body flex filters">{children}</div>
       </div>
     </aside>
   );

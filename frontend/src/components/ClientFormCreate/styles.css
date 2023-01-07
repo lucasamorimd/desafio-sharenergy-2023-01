@@ -1,0 +1,17 @@
+.client_form {
+    width: 100%;
+}
+
+.client_form input {
+    margin-bottom: 10px;
+}
+
+.client_form button {
+    width: 50%;
+    align-self: center;
+    margin-top: 5px;
+}
+
+.column {
+    flex-direction: column;
+}

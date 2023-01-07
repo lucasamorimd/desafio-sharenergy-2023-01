@@ -67,39 +67,37 @@ function Home() {
               </div>
             </div>
           </section>
-          <SideMenu
-            filter={
-              <>
-                <div className="pagination">
-                  <button
-                    disabled={page === 1}
-                    onClick={() => {
-                      setPage(page - 1);
-                    }}
-                  >
-                    &lt;
-                  </button>
-                  <button>{page}</button>
-                  <button
-                    onClick={() => {
-                      setPage(page + 1);
-                    }}
-                  >
-                    &gt;
-                  </button>
-                </div>
-                <div className="searchArea">
-                  <input
-                    id="searchInput"
-                    type="text"
-                    value={search}
-                    onChange={handleSearch}
-                    placeholder="Digite um nome, email ou username"
-                  />
-                </div>
-              </>
-            }
-          />
+          <SideMenu>
+            <>
+              <div className="pagination">
+                <button
+                  disabled={page === 1}
+                  onClick={() => {
+                    setPage(page - 1);
+                  }}
+                >
+                  &lt;
+                </button>
+                <button>{page}</button>
+                <button
+                  onClick={() => {
+                    setPage(page + 1);
+                  }}
+                >
+                  &gt;
+                </button>
+              </div>
+              <div className="searchArea">
+                <input
+                  id="searchInput"
+                  type="text"
+                  value={search}
+                  onChange={handleSearch}
+                  placeholder="Digite um nome, email ou username"
+                />
+              </div>
+            </>
+          </SideMenu>
         </div>
       </section>
     </>

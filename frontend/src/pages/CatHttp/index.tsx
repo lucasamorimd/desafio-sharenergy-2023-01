@@ -45,23 +45,21 @@ function CatHttp() {
               </div>
             </div>
           </section>
-          <SideMenu
-            filter={
-              <>
-                <div className="searchArea">
-                  <input
-                    id="searchInput"
-                    type="text"
-                    maxLength={3}
-                    value={status}
-                    onChange={handelStatus}
-                    placeholder="Digite um status code"
-                  />
-                  <button onClick={handleCatImage}>Buscar</button>
-                </div>
-              </>
-            }
-          />
+          <SideMenu>
+            <>
+              <div className="searchArea">
+                <input
+                  id="searchInput"
+                  type="text"
+                  maxLength={3}
+                  value={status}
+                  onChange={handelStatus}
+                  placeholder="Digite um status code"
+                />
+                <button onClick={handleCatImage}>Buscar</button>
+              </div>
+            </>
+          </SideMenu>
         </div>
       </section>
     </>
