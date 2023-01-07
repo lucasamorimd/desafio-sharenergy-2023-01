@@ -9,6 +9,15 @@ const ClientSchema = new Schema({
   telephone: { type: String, required: true },
   address: { type: String, required: true },
   document: { type: String, required: true },
-  created_at: { type: String, required: true },
+  created_at: {
+    type: {
+      day: Number,
+      month: Number,
+      year: Number,
+      hour: Number,
+      seconds: Number,
+    },
+    required: true,
+  },
 });
 module.exports = connection.model.Client || model("Client", ClientSchema);

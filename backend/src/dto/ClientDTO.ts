@@ -1,3 +1,5 @@
+import { Date } from "../types/date";
+
 export interface ClientDTO {
   id?: string;
   name: string;
@@ -5,5 +7,5 @@ export interface ClientDTO {
   address: string;
   telephone: string;
   document: string;
-  created_at: string;
+  created_at: Date;
 }

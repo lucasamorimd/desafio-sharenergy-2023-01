@@ -8,6 +8,15 @@ const UserSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  created_at: { type: String, required: true },
+  created_at: {
+    type: {
+      day: Number,
+      month: Number,
+      year: Number,
+      hour: Number,
+      seconds: Number,
+    },
+    required: true,
+  },
 });
 module.exports = connection.model.User || model("User", UserSchema);

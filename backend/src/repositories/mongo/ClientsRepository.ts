@@ -9,7 +9,13 @@ export class ClientsRepository implements IClientsRepository {
     const skip = perPage * (page - 1);
     return await this.model
       .find()
-      .sort({ created_at: 1, id: 1 })
+      .sort({
+        day: 1,
+        month: 1,
+        year: 1,
+        hour: 1,
+        seconds: 1,
+      })
       .skip(skip)
       .limit(perPage);
   }

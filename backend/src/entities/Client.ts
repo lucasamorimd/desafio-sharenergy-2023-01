@@ -1,5 +1,6 @@
 import { randomUUID } from "crypto";
-import moment from "moment";
+import { getDate } from "../handlers/getDate";
+import { Date } from "../types/date";
 import { IEntity } from "./IEntity";
 
 export class Client implements IEntity {
@@ -9,14 +10,16 @@ export class Client implements IEntity {
   public telephone!: string;
   public address!: string;
   public document!: string;
-  public created_at!: string;
+  public created_at!: Date;
 
   constructor(props: Omit<Client, "id">, id?: string) {
     Object.assign(this, props);
     if (!id) {
       this.id = randomUUID();
     }
-    moment.locale(process.env.LOCALE);
-    this.created_at = moment().format("L LTS");
+    if (!this.created_at) {
+      const date = getDate();
+      this.created_at = date;
+    }
   }
 }

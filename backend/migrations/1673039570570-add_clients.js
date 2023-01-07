@@ -1,9 +1,5 @@
 const Client = require("./models/Cliente");
 const uuid = require("crypto");
-const moment = require("moment");
-const dotenv = require("dotenv");
-dotenv.config();
-moment.locale(process.env.LOCALE);
 /**
  * Make any changes you need to make to the database here
  */
@@ -11,6 +7,7 @@ async function up() {
   let list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   let clients = [];
   list.map((item) => {
+    const date = new Date();
     clients.push({
       id: uuid.randomUUID(),
       name: `Teste Fulano ${item}`,
@@ -18,7 +15,14 @@ async function up() {
       telephone: "321654987",
       address: `Endereço ${item}`,
       document: `doc-${item}`,
-      created_at: moment().format("L LTS"),
+      created_at: {
+        day: date.getUTCDay(),
+        month: date.getUTCMonth() + 1,
+        year: date.getUTCFullYear(),
+        hour: date.getUTCHours(),
+        minutes: date.getUTCMinutes(),
+        seconds: date.getUTCSeconds(),
+      },
     });
   });
   await Client.create(clients);
