@@ -14,9 +14,9 @@ class AxiosFactory implements IFactory {
       sessionStorage.getItem("token") || sessionStorage.getItem("token");
     const axiosInstace = axios.create({
       baseURL: this.base_url,
-      // headers: {
-      //   Authorization: `Basic ${token}`,
-      // },
+      headers: {
+        Authorization: `Basic ${token}`,
+      },
     });
     return axiosInstace;
   }

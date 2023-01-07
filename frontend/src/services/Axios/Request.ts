@@ -22,8 +22,7 @@ class Request implements IRequest {
     return response.data;
   }
   async delete(url: string, data?: any) {
-    let fullUrl = `${url}/${data}`;
-    let response = await this.client.delete({ url: fullUrl });
+    let response = await this.client.delete({ url: url, params: data });
     return response.data;
   }
 }

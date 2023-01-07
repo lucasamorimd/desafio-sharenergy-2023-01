@@ -13,7 +13,8 @@ class Client implements IClient {
     return await this.client.put(data.url, data.params);
   }
   async delete(data: IParamsClient): Promise<any> {
-    return await this.client.delete(data.url);
+    let fullUrl = `${data.url}/${data.params}`;
+    return await this.client.delete(fullUrl);
   }
 }
 export { Client };
