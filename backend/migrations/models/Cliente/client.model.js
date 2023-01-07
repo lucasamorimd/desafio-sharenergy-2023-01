@@ -15,9 +15,10 @@ const ClientSchema = new Schema({
       month: Number,
       year: Number,
       hour: Number,
+      minutes: Number,
       seconds: Number,
     },
     required: true,
   },
 });
-module.exports = connection.model.Client || model("Client", ClientSchema);
+module.exports = connection.model.clients || model("clients", ClientSchema);

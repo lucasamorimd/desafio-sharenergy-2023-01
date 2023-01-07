@@ -23,11 +23,11 @@ export default class ClientModel implements IMongoModel {
     },
   });
 
-  modelName: string = "Client";
+  modelName: string = "clients";
 
   getModel(): Model<Client> {
     return (
-      connection.models.Client || model<Client>(this.modelName, this.schema)
+      connection.models.clients || model<Client>(this.modelName, this.schema)
     );
   }
 }

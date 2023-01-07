@@ -14,9 +14,10 @@ const UserSchema = new Schema({
       month: Number,
       year: Number,
       hour: Number,
+      minutes: Number,
       seconds: Number,
     },
     required: true,
   },
 });
-module.exports = connection.model.User || model("User", UserSchema);
+module.exports = connection.model.users || model("users", UserSchema);

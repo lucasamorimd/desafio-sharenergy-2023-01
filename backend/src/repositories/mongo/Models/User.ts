@@ -22,9 +22,9 @@ export default class UserModel implements IMongoModel {
     },
   });
 
-  modelName: string = "User";
+  modelName: string = "users";
 
   getModel(): Model<User> {
-    return connection.models.User || model<User>(this.modelName, this.schema);
+    return connection.models.users || model<User>(this.modelName, this.schema);
   }
 }
