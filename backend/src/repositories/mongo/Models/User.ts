@@ -15,6 +15,7 @@ export default class UserModel implements IMongoModel {
         month: Number,
         year: Number,
         hour: Number,
+        minutes: Number,
         seconds: Number,
       },
       required: true,

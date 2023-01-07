@@ -17,6 +17,7 @@ export class Client implements IEntity {
     if (!id) {
       this.id = randomUUID();
     }
+    console.log(this.created_at);
     if (!this.created_at) {
       const date = getDate();
       this.created_at = date;

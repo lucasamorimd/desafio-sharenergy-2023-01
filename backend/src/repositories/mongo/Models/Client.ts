@@ -16,6 +16,7 @@ export default class ClientModel implements IMongoModel {
         month: Number,
         year: Number,
         hour: Number,
+        minutes: Number,
         seconds: Number,
       },
       required: true,
