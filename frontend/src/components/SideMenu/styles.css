@@ -7,6 +7,7 @@ aside {
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    flex: 1;
 }
 
 .filters {

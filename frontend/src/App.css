@@ -28,10 +28,6 @@ article {
         flex-direction: column-reverse;
     }
 
-    .flex {
-        justify-content: center;
-    }
-
     header {
         height: auto;
     }
