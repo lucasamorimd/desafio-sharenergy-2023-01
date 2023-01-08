@@ -31,17 +31,17 @@ function Header({ children, active = "home" }: HeaderChildType) {
 
   return (
     <>
-      <header>
-        <div className="container">
-          <div className="logo">
+      <header id="header">
+        <div className="header_container">
+          <div className="header_logo">
             <a href="#">Sharenergy</a>
           </div>
-          <div className="menu">
+          <div className="header_menu">
             <nav>
-              <div className="menu-mobile" onClick={showMenu}>
-                <div className="mm_line"></div>
-                <div className="mm_line"></div>
-                <div className="mm_line"></div>
+              <div className="header_menu-mobile" onClick={showMenu}>
+                <div className="header_mm_line"></div>
+                <div className="header_mm_line"></div>
+                <div className="header_mm_line"></div>
               </div>
               <ul
                 id="menu"
@@ -102,7 +102,7 @@ function Header({ children, active = "home" }: HeaderChildType) {
         </div>
       </header>
       <section id="geral">
-        <div className="container">{children}</div>
+        <div className="header_container">{children}</div>
       </section>
     </>
   );

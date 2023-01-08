@@ -53,18 +53,14 @@ function Clients() {
       <SideMenu title="Ações">
         <>
           <Pagination setPage={setPage} page={page} lastPage={lastPage} />
-          <div className="actionAreaClients column">
-            <button
-              onClick={() => {
-                setShowFormNewClient(!showFormNewClient);
-              }}
-            >
-              Novo Cliente
-            </button>
-            {showFormNewClient && (
-              <ClientFormCreate loadClients={loadClients} />
-            )}
-          </div>
+          <button
+            onClick={() => {
+              setShowFormNewClient(!showFormNewClient);
+            }}
+          >
+            Novo Cliente
+          </button>
+          {showFormNewClient && <ClientFormCreate loadClients={loadClients} />}
         </>
       </SideMenu>
     </Header>

@@ -60,14 +60,12 @@ function Home() {
       <SideMenu title="Busca e Páginas">
         <>
           <Pagination setPage={setPage} page={page} lastPage={10} />
-          <div className="searchAreaHome">
-            <input
-              id="searchInput"
-              type="text"
-              onChange={handleSearch}
-              placeholder="Digite um nome, email ou nickname"
-            />
-          </div>
+          <input
+            id="searchInput"
+            type="text"
+            onChange={handleSearch}
+            placeholder="Digite um nome, email ou nickname"
+          />
         </>
       </SideMenu>
     </Header>

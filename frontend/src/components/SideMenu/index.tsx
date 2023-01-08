@@ -1,3 +1,4 @@
+import { Widget } from "../Widget";
 import "./styles.css";
 type SideMenuChield = {
   children: JSX.Element;
@@ -6,13 +7,9 @@ type SideMenuChield = {
 function SideMenu({ children, title = "Ações" }: SideMenuChield) {
   return (
     <aside>
-      <div className="widget">
-        <div className="widget_title">
-          <div className="widget_title_text">{title}</div>
-          <div className="widget_title_bar"></div>
-        </div>
-        <div className="widget_body flex filters">{children}</div>
-      </div>
+      <Widget title={title}>
+        <div className="actionsArea">{children}</div>
+      </Widget>
     </aside>
   );
 }

@@ -11,25 +11,6 @@ body {
     padding: 0;
 }
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    width: 990px;
-}
-
-#geral {
-    display: flex;
-    justify-content: center;
-}
-
-#geral section {
-    flex: 2;
-}
-
-#geral aside {
-    flex: 1;
-}
-
 article {
     flex: 1;
     min-width: 300px;
@@ -39,6 +20,7 @@ article {
 .flex {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 @media(max-width:600px) {
@@ -46,11 +28,9 @@ article {
         flex-direction: column-reverse;
     }
 
-    #geral section,
-    #geral aside {
-        padding: 20px;
+    .flex {
+        justify-content: center;
     }
-
 
     header {
         height: auto;

@@ -39,17 +39,17 @@ function CatHttp() {
       </section>
       <SideMenu title="Buscar">
         <>
-          <div className="searchAreaCat">
-            <input
-              id="searchInput"
-              type="text"
-              maxLength={3}
-              value={status}
-              onChange={handelStatus}
-              placeholder="Digite um status code"
-            />
-            <button onClick={handleCatImage}>Buscar</button>
-          </div>
+          <input
+            id="catSearchInput"
+            type="text"
+            maxLength={3}
+            value={status}
+            onChange={handelStatus}
+            placeholder="Digite um status code"
+          />
+          <button onClick={handleCatImage} id="catSearchButton">
+            Buscar
+          </button>
         </>
       </SideMenu>
     </Header>
