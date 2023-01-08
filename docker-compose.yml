@@ -22,10 +22,16 @@ services:
   backend:
     build: ./backend
     image: backend
+    env_file:
+      - ./backend/.env
     ports:
-      - "5000:5000"
+      - 5003:5003
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - PORT=5003
+      - MONGO_URL=mongodb://mongo:27017/sharenergy
+      - MIGRATE_dbConnectionUri=mongodb://mongo:27017/sharenergy
+      - LOCALE=pt-br
     volumes:
       - ./backend:/app
       - /app/node_modules

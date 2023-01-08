@@ -90,7 +90,7 @@
     display: none;
 }
 
-@media(max-width:600px) {
+@media(max-width:665px) {
     header .header_container {
         flex-direction: row;
     }
