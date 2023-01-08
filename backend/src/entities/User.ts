@@ -17,7 +17,6 @@ export class User implements IEntity {
     if (!id) {
       this.id = randomUUID();
     }
-    const date = new Date();
     if (!this.created_at) {
       this.created_at = getDate();
     }

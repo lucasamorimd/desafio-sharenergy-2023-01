@@ -13,7 +13,7 @@ export class AuthController {
         .status(200)
         .json({ data: response, message: "Login feito com sucesso" });
     } catch (err: any) {
-      return res.status(403).json({ data: {}, message: err.message });
+      return res.status(200).json({ error: true, message: err.message });
     }
   }
 }

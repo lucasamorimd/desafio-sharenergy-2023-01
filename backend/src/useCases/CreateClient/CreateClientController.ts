@@ -10,7 +10,8 @@ export class CreateClientController {
       await this.createClientUseCase.execute(data);
       return res.status(201).json({ message: "Client created" });
     } catch (err: any) {
-      return res.status(400).json({ message: err.message });
+      console.log(err.message);
+      return res.status(200).json({ error: true, message: err.message });
     }
   }
 }

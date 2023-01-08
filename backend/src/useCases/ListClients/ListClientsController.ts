@@ -13,7 +13,7 @@ export class ListClientsController {
       );
       return res.status(200).json({ data: clients, message: "" });
     } catch (err: any) {
-      return res.status(400).json({ data: {}, message: err.message });
+      return res.status(200).json({ error: true, message: err.message });
     }
   }
 }

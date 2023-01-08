@@ -42,7 +42,7 @@ export class UserRepository implements IUserRepository {
   }
 
   async verifyToken(data: verifyToken): Promise<User | null> {
-    return await this.model.findOne({ data });
+    return await this.model.findOne(data);
   }
 
   async save(user: User): Promise<void> {

@@ -12,7 +12,7 @@ export class DeleteClientController {
 
       return res.status(201).json({ message: "Cliente deleted" });
     } catch (err: any) {
-      return res.status(400).json({ message: err.message });
+      return res.status(200).json({ error: true, message: err.message });
     }
   }
 }

@@ -12,6 +12,10 @@ router.post("/login", (req: Request, res: Response) => {
   return authController.run(req, res);
 });
 
+router.get("/validate-token", (req: Request, res: Response) => {
+  return verifyToken.run(req, res);
+});
+
 router.post(
   "/client/create",
   (req: Request, res: Response, next: NextFunction) => {

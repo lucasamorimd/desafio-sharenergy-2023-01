@@ -1,10 +1,12 @@
 import { NextFunction, Request, Response } from "express";
 
 import { IUserRepository } from "../repositories/IUserRepository";
+import { createUserToken } from "./createUserToken";
+import { verifyIsJson } from "./verifyIsJson";
 
 class VerifyToken {
   constructor(private userRepository: IUserRepository) {}
-  run(req: Request, res: Response, next: NextFunction) {
+  async run(req: Request, res: Response, next?: NextFunction) {
     try {
       let token = req.headers.authorization;
 
@@ -12,19 +14,28 @@ class VerifyToken {
         throw new Error("Não autorizado");
       }
 
-      let decodedToken = JSON.parse(
-        Buffer.from(token.substring(6), "base64").toString()
-      );
+      let decodedToken = Buffer.from(token.substring(6), "base64").toString();
 
-      let user = this.userRepository.verifyToken(decodedToken);
+      let validateIsJson = verifyIsJson(decodedToken);
+      if (!validateIsJson) {
+        throw new Error("Formato de token inválido");
+      }
+
+      let user = await this.userRepository.verifyToken(validateIsJson);
 
       if (!user) {
         throw new Error("Token inválido");
       }
 
-      return next();
+      if (next) {
+        return next();
+      }
+
+      token = createUserToken(user);
+
+      return res.status(200).json({ user: user, token: token });
     } catch (err: any) {
-      return res.status(403).json({ error: true, message: err.message });
+      return res.status(200).json({ error: true, message: err.message });
     }
   }
 }
