@@ -34,15 +34,17 @@ function ClientFormCreate({ loadClients }: FormCreateClientProps) {
   };
 
   const createClient = async (newClient: ClientDTO) => {
-    let response = await actions.createClient(newClient);
-    setResponse(response);
+    let data = await actions.createClient(newClient);
+    console.log(data.message);
+    setResponse(data.message);
     setIsLoading(false);
     loadClients();
   };
 
   return (
     <>
-      <div className="messageArea">{response}</div>
+      {response && <div className="messageArea">{response}</div>}
+
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="client_form"

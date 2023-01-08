@@ -11,19 +11,30 @@ class Request implements IRequest {
   constructor(private client: IClient) {}
   async get(url: string, data?: any): Promise<any> {
     let response = await this.client.get({ url: url, params: data });
+    this.verifyError(response.data);
     return response.data;
   }
   async post(url: string, data?: any): Promise<any> {
     let response = await this.client.post({ url: url, params: data });
+    this.verifyError(response.data);
     return response.data;
   }
   async put(url: string, data?: any): Promise<any> {
     let response = await this.client.put({ url: url, params: data });
+    this.verifyError(response.data);
     return response.data;
   }
   async delete(url: string, data?: any): Promise<any> {
     let response = await this.client.delete({ url: url, params: data });
+    this.verifyError(response.data);
     return response.data;
+  }
+
+  private verifyError(data: any) {
+    console.log(data.message);
+    if (data.error) {
+      throw new Error(data.message);
+    }
   }
 }
 export { Request };

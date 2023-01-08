@@ -32,16 +32,24 @@ function ClientCard({ client, load }: ClientProp) {
   };
 
   const deleteClient = async (client: ClientDTO) => {
-    let response = await actions.deleteClient(client);
-    setResponse(response);
+    let data = await actions.deleteClient(client);
+    setResponse(data.message);
     setOpenDelete(false);
     load();
   };
 
   const getDate = ({ created_at }: ClientDTO) => {
-    return `${client.created_at?.day}/${client.created_at?.month}/
-    ${client.created_at?.year} - ${client.created_at?.hour}:
-    ${client.created_at?.minutes}`;
+    let day =
+      created_at?.day.toString().length == 1
+        ? "0" + created_at.day
+        : created_at?.day;
+    let month =
+      created_at?.month.toString().length == 1
+        ? "0" + created_at.month
+        : created_at?.month;
+    return `${day}/${month}/
+    ${created_at?.year} - ${created_at?.hour}:
+    ${created_at?.minutes}`;
   };
 
   return (

@@ -20,10 +20,9 @@ function ClientUpdateForm({ client, loadClients }: ClientUpdateFormType) {
   const onSubmit = (data: any) => {
     updateClient(data);
   };
-  const updateClient = async (data: ClientDTO) => {
-    let response = await actions.updateClient(data);
-    setResponse(response);
-
+  const updateClient = async (params: ClientDTO) => {
+    let data = await actions.updateClient(params);
+    setResponse(data.message);
     loadClients();
   };
   return (

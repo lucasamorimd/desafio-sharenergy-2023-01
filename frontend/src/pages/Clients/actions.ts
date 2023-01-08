@@ -1,10 +1,7 @@
 import { ClientDTO } from "../../dto/ClientDTO";
 import { AxiosFactory } from "../../services/Axios/Factory";
 import { IRequest } from "../../services/Axios/Request";
-import {
-  ClientResponseType,
-  DataResponse,
-} from "../../types/ClientResponseType";
+import { DataResponse } from "../../types/ClientResponseType";
 
 class ClientsActions {
   private requestApi!: IRequest;
@@ -19,34 +16,34 @@ class ClientsActions {
         page: page,
         perPage: 10,
       });
-      return response;
+      return { data: response.data, message: response.message };
     } catch (err: any) {
-      return err.response.data.message;
+      return { data: null, message: err.message };
     }
   }
-  async createClient(client: ClientDTO) {
+  async createClient(client: ClientDTO): Promise<DataResponse> {
     try {
       let response = await this.requestApi.post("/client/create", client);
-      return response.message;
+      return { data: response.data, message: response.message };
     } catch (err: any) {
-      return err.response.data.message;
+      return { data: null, message: err.message };
     }
   }
 
-  async updateClient(client: ClientDTO) {
+  async updateClient(client: ClientDTO): Promise<DataResponse> {
     try {
       let response = await this.requestApi.put("/client/update", client);
-      return response.message;
+      return { data: response.data, message: response.message };
     } catch (err: any) {
-      return err.response.data.message;
+      return { data: null, message: err.message };
     }
   }
-  async deleteClient(client: ClientDTO) {
+  async deleteClient(client: ClientDTO): Promise<DataResponse> {
     try {
       let response = await this.requestApi.delete("/client/delete", client.id);
-      return response.message;
+      return { data: response.data, message: response.message };
     } catch (err: any) {
-      return err.response.data.message;
+      return { data: null, message: err.message };
     }
   }
 }

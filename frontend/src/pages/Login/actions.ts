@@ -14,12 +14,13 @@ class LoginActions {
     userName: string,
     password: string
   ): Promise<AuthResponseType> {
-    let data = { userName, password };
+    let params = { userName, password };
     try {
-      let response = await this.requestApi.post("/login", data);
+      let response = await this.requestApi.post("/login", params);
+
       return { data: response.data, message: response.message };
     } catch (err: any) {
-      return { data: null, message: err.response.data.message };
+      return { data: null, message: err };
     }
   }
 }

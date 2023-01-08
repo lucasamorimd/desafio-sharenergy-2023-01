@@ -8,7 +8,7 @@ type ClientResponseType = {
 };
 
 type DataResponse = {
-  data: ClientResponseType;
+  data: ClientResponseType | null;
   message: string;
 };
 

@@ -26,10 +26,12 @@ function Clients() {
 
   const loadClients = async () => {
     let { data }: DataResponse = await actions.getClientList(page);
-    setClientsList(data.clients);
-    let lastPage = Math.ceil(data.total / data.perPage);
-    setLastPage(lastPage);
-    setIsLoading(false);
+    if (data) {
+      setClientsList(data.clients);
+      let lastPage = Math.ceil(data.total / data.perPage);
+      setLastPage(lastPage);
+      setIsLoading(false);
+    }
   };
 
   return (
