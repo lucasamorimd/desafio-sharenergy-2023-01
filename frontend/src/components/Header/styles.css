@@ -53,7 +53,7 @@
 }
 
 
-#header nav ul {
+#menu {
     display: flex;
 }
 
@@ -86,6 +86,10 @@
     flex: 1;
 }
 
+#mobile_menu {
+    display: none;
+}
+
 @media(max-width:600px) {
     header .header_container {
         flex-direction: row;
@@ -95,10 +99,6 @@
         flex-direction: column-reverse;
     }
 
-    #header .header_wellcome {
-        display: none;
-    }
-
     #header nav .active a,
     #header nav a:hover {
         background-color: #39aae1;
@@ -106,9 +106,12 @@
         transform: scale(1);
     }
 
-    #header nav ul {
-        flex-direction: column;
+    #menu {
         display: none;
+    }
+
+    #mobile_menu {
+        flex-direction: column;
         position: absolute;
         left: 0;
         width: 100%;

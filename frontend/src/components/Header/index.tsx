@@ -10,18 +10,17 @@ type HeaderChildType = {
 
 function Header({ children, active = "home" }: HeaderChildType) {
   const { logout } = useContext(Context);
-  const [mobileMenuActive, setMobileMenuActive] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    if (window.innerWidth < 600) {
-      setIsMobile(true);
-    }
-  }, []);
 
   const showMenu = () => {
-    if (isMobile) {
-      setMobileMenuActive(!mobileMenuActive);
+    let mobile_menu = document.getElementById("mobile_menu");
+    if (mobile_menu) {
+      switch (mobile_menu.style.display) {
+        case "flex":
+          mobile_menu.style.display = "none";
+          break;
+        default:
+          mobile_menu.style.display = "flex";
+      }
     }
   };
 
@@ -43,14 +42,54 @@ function Header({ children, active = "home" }: HeaderChildType) {
                 <div className="header_mm_line"></div>
                 <div className="header_mm_line"></div>
               </div>
-              <ul
-                id="menu"
-                style={
-                  isMobile
-                    ? { display: mobileMenuActive ? "flex" : "none" }
-                    : {}
-                }
-              >
+              <ul id="menu">
+                <li className={active == "home" ? "active" : ""}>
+                  <Link
+                    to="/"
+                    onClick={() => {
+                      showMenu();
+                    }}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li className={active == "cats" ? "active" : ""}>
+                  <Link
+                    to="/cat-http"
+                    onClick={() => {
+                      showMenu();
+                    }}
+                  >
+                    Cats
+                  </Link>
+                </li>
+                <li className={active == "dogs" ? "active" : ""}>
+                  <Link
+                    to="/random-dogs"
+                    onClick={() => {
+                      showMenu();
+                    }}
+                  >
+                    Dogs
+                  </Link>
+                </li>
+                <li className={active == "clients" ? "active" : ""}>
+                  <Link
+                    to="/clients"
+                    onClick={() => {
+                      showMenu();
+                    }}
+                  >
+                    Clientes
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/login" onClick={handdleLogout}>
+                    Logout
+                  </Link>
+                </li>
+              </ul>
+              <ul id="mobile_menu">
                 <li className={active == "home" ? "active" : ""}>
                   <Link
                     to="/"
