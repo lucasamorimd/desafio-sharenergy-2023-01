@@ -1,6 +1,10 @@
 import { ClientDTO } from "../../dto/ClientDTO";
 import { AxiosFactory } from "../../services/Axios/Factory";
 import { IRequest } from "../../services/Axios/Request";
+import {
+  ClientResponseType,
+  DataResponse,
+} from "../../types/ClientResponseType";
 
 class ClientsActions {
   private requestApi!: IRequest;
@@ -9,7 +13,7 @@ class ClientsActions {
     const clientFactory = new AxiosFactory(base_url);
     this.requestApi = clientFactory.create();
   }
-  async getClientList(page: number) {
+  async getClientList(page: number): Promise<DataResponse> {
     try {
       let response = await this.requestApi.get("/client/list", {
         page: page,

@@ -59,7 +59,7 @@ function Home() {
       </section>
       <SideMenu title="Busca e Páginas">
         <>
-          <Pagination setPage={setPage} page={page} />
+          <Pagination setPage={setPage} page={page} lastPage={10} />
           <div className="searchAreaHome">
             <input
               id="searchInput"

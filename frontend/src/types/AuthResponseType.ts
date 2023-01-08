@@ -1,7 +1,7 @@
 import { AuthDTO } from "../dto/AuthDTO";
 
-type responses = {
+type AuthResponseType = {
   data: AuthDTO | null;
   message: string;
 };
-export type { responses };
+export type { AuthResponseType };

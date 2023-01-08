@@ -13,7 +13,7 @@ class AxiosFactory implements IFactory {
     let headers = {};
     if (withAuthorizationHeader) {
       let token =
-        sessionStorage.getItem("token") || sessionStorage.getItem("token");
+        sessionStorage.getItem("token") || localStorage.getItem("token");
       headers = {
         Authorization: `Basic ${token}`,
       };

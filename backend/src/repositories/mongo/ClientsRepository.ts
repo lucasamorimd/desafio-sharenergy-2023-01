@@ -1,17 +1,33 @@
 import { Model } from "mongoose";
 import { Client } from "../../entities/Client";
+import { ResponseClientType } from "../../types/ResponseClientType";
 import { IClientsRepository } from "../IClientsRepository";
+
+export type ListResponseClients = {
+  total: number;
+  clients: Client[];
+  perPage: number;
+  page: number;
+};
 
 export class ClientsRepository implements IClientsRepository {
   constructor(private model: Model<Client>) {}
 
-  async list(page: number = 1, perPage: number = 10): Promise<Client[]> {
+  async list(
+    page: number = 1,
+    perPage: number = 10
+  ): Promise<ResponseClientType> {
     const skip = perPage * (page - 1);
-    return await this.model
-      .find()
-      .sort([["created_at", "descending"]])
-      .skip(skip)
-      .limit(perPage);
+    return {
+      clients: await this.model
+        .find()
+        .sort([["created_at", "descending"]])
+        .skip(skip)
+        .limit(perPage),
+      total: await this.model.count(),
+      page: page,
+      perPage: perPage,
+    };
   }
 
   async findByEmail(email: string): Promise<Client | null> {

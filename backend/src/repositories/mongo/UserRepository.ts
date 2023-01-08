@@ -1,6 +1,7 @@
 import { Model } from "mongoose";
 import { User } from "../../entities/User";
 import { authType } from "../../types/authType";
+import { ResponseUserType } from "../../types/ResponseUserType";
 import { verifyToken } from "../../types/verifyTokenType";
 
 import { IUserRepository } from "../IUserRepository";
@@ -23,8 +24,21 @@ export class UserRepository implements IUserRepository {
     });
   }
 
-  async list(): Promise<User[]> {
-    return await this.model.find();
+  async list(
+    page: number = 1,
+    perPage: number = 10
+  ): Promise<ResponseUserType> {
+    const skip = perPage * (page - 1);
+    return {
+      user: await this.model
+        .find()
+        .sort([["created_at", "descending"]])
+        .skip(skip)
+        .limit(perPage),
+      total: await this.model.count(),
+      page: page,
+      perPage: perPage,
+    };
   }
 
   async verifyToken(data: verifyToken): Promise<User | null> {

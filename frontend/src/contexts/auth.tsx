@@ -1,11 +1,11 @@
 import { createContext, useReducer } from "react";
 import { Navigate } from "react-router-dom";
 import { authReducer, authInitialState } from "../reducers/userReducer";
-import { authType } from "../types/authType";
+import { AuthType } from "../types/AuthType";
 import { reducerActionType } from "../types/reducerActionType";
 
 type initialStateType = {
-  auth: authType;
+  auth: AuthType;
 };
 
 type ContextType = {

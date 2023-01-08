@@ -1,4 +1,4 @@
-import { Date } from "../types/date";
+import { Date } from "../types/Date";
 
 interface ClientDTO {
   id?: string;

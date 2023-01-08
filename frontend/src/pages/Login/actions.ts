@@ -1,7 +1,7 @@
 import { AxiosInstance } from "axios";
 import { AxiosFactory } from "../../services/Axios/Factory";
 import { IRequest } from "../../services/Axios/Request";
-import { responses } from "../../types/responses";
+import { AuthResponseType } from "../../types/AuthResponseType";
 
 class LoginActions {
   private requestApi: IRequest;
@@ -10,7 +10,10 @@ class LoginActions {
     const clientFactory = new AxiosFactory(base_url);
     this.requestApi = clientFactory.create();
   }
-  async authenticate(userName: string, password: string): Promise<responses> {
+  async authenticate(
+    userName: string,
+    password: string
+  ): Promise<AuthResponseType> {
     let data = { userName, password };
     try {
       let response = await this.requestApi.post("/login", data);

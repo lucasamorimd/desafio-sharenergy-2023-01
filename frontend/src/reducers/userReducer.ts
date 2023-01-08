@@ -1,7 +1,7 @@
-import { authType } from "../types/authType";
+import { AuthType } from "../types/AuthType";
 import { reducerActionType } from "../types/reducerActionType";
 
-const getAuthInitialState = <authType>() => {
+const getAuthInitialState = <AuthType>() => {
   let user = sessionStorage.getItem("user") || localStorage.getItem("user");
   if (!user) {
     return {
@@ -16,9 +16,9 @@ const getAuthInitialState = <authType>() => {
   return JSON.parse(user);
 };
 
-const authInitialState: authType = getAuthInitialState();
+const authInitialState: AuthType = getAuthInitialState();
 
-const authReducer = (state: authType, action: reducerActionType) => {
+const authReducer = (state: AuthType, action: reducerActionType) => {
   switch (action.type) {
     case "CHANGE_USER_NAME":
       return { ...state, userName: action.payload.userName };

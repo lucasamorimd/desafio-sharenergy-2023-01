@@ -1,4 +1,4 @@
-type authType = {
+type AuthType = {
   userName: string;
   userNickName: string;
   userEmail: string;
@@ -6,4 +6,4 @@ type authType = {
   isLogged: boolean;
   rememberMe: boolean;
 };
-export type { authType };
+export type { AuthType };

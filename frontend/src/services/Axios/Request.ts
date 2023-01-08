@@ -9,19 +9,19 @@ interface IRequest {
 
 class Request implements IRequest {
   constructor(private client: IClient) {}
-  async get(url: string, data?: any) {
+  async get(url: string, data?: any): Promise<any> {
     let response = await this.client.get({ url: url, params: data });
     return response.data;
   }
-  async post(url: string, data?: any) {
+  async post(url: string, data?: any): Promise<any> {
     let response = await this.client.post({ url: url, params: data });
     return response.data;
   }
-  async put(url: string, data?: any) {
+  async put(url: string, data?: any): Promise<any> {
     let response = await this.client.put({ url: url, params: data });
     return response.data;
   }
-  async delete(url: string, data?: any) {
+  async delete(url: string, data?: any): Promise<any> {
     let response = await this.client.delete({ url: url, params: data });
     return response.data;
   }
