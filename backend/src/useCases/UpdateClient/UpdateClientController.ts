@@ -8,9 +8,11 @@ export class UpdateClientController {
     try {
       let data: ClientDTO = req.body;
 
-      await this.updateClientUseCase.execute(data);
+      let updatedClient = await this.updateClientUseCase.execute(data);
 
-      return res.status(201).json({ message: "Client updated" });
+      return res
+        .status(201)
+        .json({ data: updatedClient, message: "Client updated" });
     } catch (err: any) {
       return res.status(200).json({ error: true, message: err.message });
     }

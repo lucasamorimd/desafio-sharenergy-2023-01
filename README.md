@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Desafio para o processo seletivo SHARENERGY 2023/01
 
 Repositório destinado aos interessados em participar do processo seletivo da SHARENERGY 2023/01. As vagas são voltadas para desenvolvimento de aplicações Web e Mobile.
@@ -90,3 +91,47 @@ Esperamos de você duas entregas: o código no GitHub e um vídeo explicativo no
 ### Prazo limite de entrega
 
 O pull request com sua solução do desafio deve ser feito até a data especificada no corpo do email que você recebeu com a descrição do desafio.
+=======
+## APRESENTAÇÃO DO PROJETO:
+
+<a href="https://www.youtube.com/watch?v=LOTTulxs_Bs"> Clique aqui para ver </a>
+
+## OBSERVAÇÕES:
+
+- Para ambiente local é necessário ter o mongo instalado e configurado. Caso esteja configurado em uma porta diferente da padrão (27017) ajustar nas variaveis de ambiente do backend.
+- Caso dê conflitos com portas exportadas no docker, alterar a porta exportada no docker-compose.yml.
+- Rodar todo o ambiente em docker ou os dois ambientes separados. Não foi configurado para rodar um ambiente em docker e o outro local, não irá funcionar como o esperado.
+
+## CONFIGURAÇÕES
+
+### FRONTEND E BACKEND: DOCKER
+
+- dentro do diretório /
+
+* <code>docker-compose up --build</code>
+
+# OU:
+
+### BACKEND: LOCAL
+
+- dentro do diretório /backend
+
+* Renomear .env.example para .env
+* <code> npm install </code>
+* <code>npm install -g migrate-mongoose</code>
+* <code>npm run migrate</code>
+* <code>npm run start:watch</code>
+
+- rota inicial padrão local: http://localhost:5000
+- rota inicial padrão docker: http://localhost:5003
+
+### FRONTEND: LOCAL
+
+- dentro do diretório /frontend
+
+* Renomear .env.example para .env
+* <code>npm install</code>
+* <code>npm run dev</code>
+
+- rota inicial padrão: http://localhost:5173
+>>>>>>> 00104dd7a7a0983a7cc0c3e0e0f14c4f38d0d1a2

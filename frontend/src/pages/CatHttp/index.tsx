@@ -14,7 +14,7 @@ function CatHttp() {
 
   const handleCatImage = () => {
     if (status !== "") {
-      setCatImage(`https://http.cat/${status}`);
+      setCatImage(`${import.meta.env.VITE_CAT_API}${status}`);
       setIsLoading(false);
     }
   };

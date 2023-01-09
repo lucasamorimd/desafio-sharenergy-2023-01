@@ -10,14 +10,15 @@ function RequireAuth({ children }: RequireauthType) {
   const { logout } = useContext(Context);
   const token =
     sessionStorage.getItem("token") || localStorage.getItem("token");
+  const user = sessionStorage.getItem("user") || localStorage.getItem("user");
 
-  if (!token) {
+  if (!token || !user) {
     return logout();
   }
 
   const classValidate = new ValidateToken();
 
-  classValidate.validate(token);
+  classValidate.validate(token, user);
 
   return children;
 }

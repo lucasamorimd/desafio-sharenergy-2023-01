@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import { IUserRepository } from "../repositories/IUserRepository";
-import { createUserToken } from "./createUserToken";
+import { CreateUserToken } from "./CreateUserToken";
 import { verifyIsJson } from "./verifyIsJson";
 
 class VerifyToken {
@@ -31,7 +31,7 @@ class VerifyToken {
         return next();
       }
 
-      token = createUserToken(user);
+      token = CreateUserToken(user);
 
       return res.status(200).json({ user: user, token: token });
     } catch (err: any) {

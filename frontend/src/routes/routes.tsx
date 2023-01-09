@@ -46,7 +46,14 @@ function RoutesList() {
       />
       <Route path="/client/:id" element={<ClientDetail />} />
 
-      <Route path="*" element={<NotFound />} />
+      <Route
+        path="*"
+        element={
+          <RequireAuth>
+            <NotFound />
+          </RequireAuth>
+        }
+      />
     </Routes>
   );
 }

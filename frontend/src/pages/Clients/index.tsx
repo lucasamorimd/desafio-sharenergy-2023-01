@@ -25,6 +25,7 @@ function Clients() {
   }, [page]);
 
   const loadClients = async () => {
+    setIsLoading(true);
     let { data }: DataResponse = await actions.getClientList(page);
     if (data) {
       setClientsList(data.clients);

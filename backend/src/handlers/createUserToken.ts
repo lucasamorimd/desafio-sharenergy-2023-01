@@ -2,7 +2,7 @@ import { UserDTO } from "../dto/UserDTO";
 import { Buffer } from "buffer";
 import { User } from "../entities/User";
 
-const createUserToken = (user: User) => {
+const CreateUserToken = (user: User) => {
   return Buffer.from(
     JSON.stringify({
       email: user.email,
@@ -12,4 +12,4 @@ const createUserToken = (user: User) => {
   ).toString("base64");
 };
 
-export { createUserToken };
+export { CreateUserToken };

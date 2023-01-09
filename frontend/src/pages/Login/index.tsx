@@ -9,15 +9,24 @@ function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [remember_me, setRememberMe] = useState(false);
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
-  const actions = new LoginActions();
 
   useEffect(() => {
     authenticated();
   }, [state]);
 
+  useEffect(() => {
+    if (message) {
+      setTimeout(() => {
+        setMessage("");
+      }, 5000);
+    }
+  }, [message]);
+
   const authenticated = () => {
     if (state.auth.isLogged) {
+      console.log("veio aqui?");
       sessionStorage.setItem("user", JSON.stringify(state.auth));
       sessionStorage.setItem("token", state.auth.token);
       if (state.auth.rememberMe) {
@@ -38,33 +47,36 @@ function Login() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const actions = new LoginActions();
     let response = await actions.authenticate(userName, password);
-    if (response.data) {
-      dispatch({
-        type: "CHANGE_USER_NAME",
-        payload: { userName: response.data.userName },
-      });
-      dispatch({
-        type: "CHANGE_USER_NICKNAME",
-        payload: { userNickName: response.data.userNickName },
-      });
-      dispatch({
-        type: "CHANGE_USER_EMAIL",
-        payload: { userEmail: response.data.email },
-      });
-      dispatch({
-        type: "CHANGE_TOKEN",
-        payload: { token: response.data.token },
-      });
-      dispatch({
-        type: "CHANGE_IS_LOGGED",
-        payload: { isLogged: true },
-      });
-      dispatch({
-        type: "CHANGE_REMEMBER_ME",
-        payload: { rememberMe: remember_me },
-      });
+    if (response.data == null) {
+      setMessage(response.message);
+      return;
     }
+    dispatch({
+      type: "CHANGE_USER_NAME",
+      payload: { userName: response.data.userName },
+    });
+    dispatch({
+      type: "CHANGE_USER_NICKNAME",
+      payload: { userNickName: response.data.userNickName },
+    });
+    dispatch({
+      type: "CHANGE_USER_EMAIL",
+      payload: { userEmail: response.data.email },
+    });
+    dispatch({
+      type: "CHANGE_TOKEN",
+      payload: { token: response.data.token },
+    });
+    dispatch({
+      type: "CHANGE_IS_LOGGED",
+      payload: { isLogged: true },
+    });
+    dispatch({
+      type: "CHANGE_REMEMBER_ME",
+      payload: { rememberMe: remember_me },
+    });
   };
 
   const handleSetRememberMe = () => {
@@ -76,6 +88,7 @@ function Login() {
       <div className="container_login">
         <div className="login_title">Login</div>
         <form onSubmit={handleSubmit} className="form_login">
+          <div className="messageArea">{message}</div>
           <div className="inputArea">
             <label htmlFor="UserName">User Name</label>
             <input

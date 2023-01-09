@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import "./styles.css";
-import { Field, FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { ClientDTO } from "../../dto/ClientDTO";
 import { ClientsActions } from "../../pages/Clients/actions";
-import { UserDTO } from "../../dto/UserDTO";
 
 type FormCreateClientProps = {
   loadClients: Function;
@@ -15,10 +14,9 @@ function ClientFormCreate({ loadClients }: FormCreateClientProps) {
     register,
     handleSubmit,
     formState: { isValid },
-    formState,
   } = useForm();
-  const [isLoading, setIsLoading] = useState(true);
   const [response, setResponse] = useState("");
+  const [messageType, setMessageType] = useState("");
 
   const onSubmit = async (data: FieldValues) => {
     if (isValid) {
@@ -33,17 +31,32 @@ function ClientFormCreate({ loadClients }: FormCreateClientProps) {
     }
   };
 
+  useEffect(() => {
+    console.log("opa veio");
+    if (response) {
+      setTimeout(() => {
+        setResponse("");
+      }, 5000);
+    }
+  }, [response]);
+
   const createClient = async (newClient: ClientDTO) => {
-    let data = await actions.createClient(newClient);
-    console.log(data.message);
-    setResponse(data.message);
-    setIsLoading(false);
+    let response = await actions.createClient(newClient);
+    setResponse(response.message);
+    setMessageType("success");
+    if (response.data == null) {
+      setMessageType("error");
+    }
     loadClients();
   };
 
   return (
     <>
-      {response && <div className="messageArea">{response}</div>}
+      {response && (
+        <div id="messageArea" className={`messageArea ${messageType}`}>
+          {response}
+        </div>
+      )}
 
       <form
         onSubmit={handleSubmit(onSubmit)}
