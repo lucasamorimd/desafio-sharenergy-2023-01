@@ -9,7 +9,7 @@ services:
       - mongo-data:/db
     networks:
       - mern-app
-      
+
   #BACK-END
   backend:
     build: ./backend
@@ -29,7 +29,6 @@ services:
       - mongo
     networks:
       - mern-app
-    entrypoint: ./docker-entrypoint.sh
 
   #FRONT-END
   frontend:
@@ -39,8 +38,13 @@ services:
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
-      - VITE_API_BASE_URL=http://localhost:5003
       - VITE_API_PORT=5003
+      - VITE_APP_PORT=5173
+      - VITE_API_BASE_URL=http://localhost:5003
+      - VITE_BASE_URL=http://localhost:5173
+      - VITE_CAT_API=https://http.cat/
+      - VITE_DOGS_API=https://random.dog
+      - VITE_RANDOM_USER_API=https://randomuser.me/
     ports:
       - "5173:5173"
     volumes:

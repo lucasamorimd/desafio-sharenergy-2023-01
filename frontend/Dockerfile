@@ -2,7 +2,7 @@ FROM node
 
 WORKDIR /app
 
-ADD . .
+ADD . /app
 
 RUN npm install
 
