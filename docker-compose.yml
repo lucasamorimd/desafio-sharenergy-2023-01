@@ -1,33 +1,19 @@
 version: "3.3"
 services:
-  #FRONT-END
-  frontend:
-    build: ./frontend
-    image: frontend
-    stdin_open: true
-    env_file:
-      - ./frontend/.env
-    environment:
-      - NODE_ENV=development
-      - CHOKIDAR_USEPOLLING=true
-      - VITE_API_BASE_URL=http://localhost:5003
-      - VITE_API_PORT=5003
+  #MONGO-DB
+  mongo:
+    image: mongo:latest
     ports:
-      - "5173:5173"
+      - "27017:27017"
     volumes:
-      - ./frontend:/app
-      - /app/node_modules
+      - mongo-data:/db
     networks:
       - mern-app
-    depends_on:
-      - backend
-
+      
   #BACK-END
   backend:
     build: ./backend
     image: backend
-    env_file:
-      - ./backend/.env
     ports:
       - 5003:5003
     environment:
@@ -44,15 +30,27 @@ services:
     networks:
       - mern-app
     entrypoint: ./docker-entrypoint.sh
-  #MONGO-DB
-  mongo:
-    image: mongo:latest
+
+  #FRONT-END
+  frontend:
+    build: ./frontend
+    image: frontend
+    stdin_open: true
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - VITE_API_BASE_URL=http://localhost:5003
+      - VITE_API_PORT=5003
     ports:
-      - "27017:27017"
+      - "5173:5173"
     volumes:
-      - mongo-data:/db
+      - ./frontend:/app
+      - /app/node_modules
     networks:
       - mern-app
+    depends_on:
+      - backend
+
 networks:
   mern-app:
     driver: bridge
