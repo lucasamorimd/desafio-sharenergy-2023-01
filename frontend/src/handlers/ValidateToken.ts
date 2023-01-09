@@ -13,7 +13,7 @@ class ValidateToken {
     this.requestApi = clientFactory.create();
   }
   async validate(token: string, user: string) {
-    const { logout } = useContext(Context);
+    const { logout, state } = useContext(Context);
     try {
       let response = await this.requestApi.get("/validate-token");
       if (response.token !== token) {
@@ -21,8 +21,10 @@ class ValidateToken {
       }
       sessionStorage.setItem("token", response.token);
       sessionStorage.setItem("user", user);
-      localStorage.setItem("token", response.token);
-      localStorage.setItem("user", user);
+      if (state.auth.rememberMe) {
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("user", user);
+      }
       return true;
     } catch (err) {
       logout();
