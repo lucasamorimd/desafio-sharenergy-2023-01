@@ -5,7 +5,7 @@ import { ClientDTO } from "../../dto/ClientDTO";
 export class CreateClientUseCase {
   constructor(private clientRepository: IClientsRepository) {}
 
-  async execute(data: ClientDTO): Promise<void> {
+  async execute(data: ClientDTO): Promise<Client> {
     const clientExists = await this.clientRepository.findByEmail(data.email);
 
     if (clientExists) {
@@ -15,5 +15,7 @@ export class CreateClientUseCase {
     const client = new Client(data);
 
     await this.clientRepository.save(client);
+
+    return client;
   }
 }

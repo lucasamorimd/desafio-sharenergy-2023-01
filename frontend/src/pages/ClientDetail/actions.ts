@@ -11,9 +11,9 @@ class ClientDetailActions {
   async getClient(id: string) {
     try {
       let response = await this.requestApi.get(`/client/${id}`);
-      return response;
+      return { data: response.data, message: response.message };
     } catch (err: any) {
-      return err.response.data.message;
+      return { data: null, message: err.message };
     }
   }
 }

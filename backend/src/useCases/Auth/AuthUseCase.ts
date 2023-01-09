@@ -2,7 +2,7 @@ import { UserDTO } from "../../dto/UserDTO";
 import { IUserRepository } from "../../repositories/IUserRepository";
 import { Buffer } from "buffer";
 import { authType } from "../../types/authType";
-import { createUserToken } from "../../handlers/createUserToken";
+import { CreateUserToken } from "../../handlers/CreateUserToken";
 export class AuthUseCase {
   constructor(private userRepository: IUserRepository) {}
   async execute(data: authType): Promise<UserDTO> {
@@ -12,7 +12,7 @@ export class AuthUseCase {
       throw new Error("User or password incorrect");
     }
 
-    const hash = createUserToken(user);
+    const hash = CreateUserToken(user);
 
     const authUser: UserDTO = {
       email: user.email,

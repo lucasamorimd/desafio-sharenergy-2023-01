@@ -19,6 +19,7 @@ function ClientDetail() {
   }, []);
 
   const loadClient = async () => {
+    setIsLoading(true);
     if (params.id) {
       setClient(null);
       let response = await actions.getClient(params.id);

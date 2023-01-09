@@ -25,3 +25,19 @@
 .column {
     flex-direction: column;
 }
+
+.messageArea {
+    width: 100%;
+    height: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.messageArea.success {
+    background-color: rgb(220, 255, 168);
+}
+
+.messageArea.error {
+    background-color: rgb(255, 167, 167);
+}

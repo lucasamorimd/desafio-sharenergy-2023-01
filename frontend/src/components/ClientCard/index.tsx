@@ -18,7 +18,7 @@ type ClientProp = {
 function ClientCard({ client, load }: ClientProp) {
   const [openFormUpdate, setOpenFormUpdate] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
-  const [response, setResponse] = useState("");
+  const [clientState, setClientState] = useState(client);
   const actions = new ClientsActions();
 
   const handleOpenFormUpdate = () => {
@@ -33,7 +33,6 @@ function ClientCard({ client, load }: ClientProp) {
 
   const deleteClient = async (client: ClientDTO) => {
     let data = await actions.deleteClient(client);
-    setResponse(data.message);
     setOpenDelete(false);
     load();
   };
@@ -57,7 +56,7 @@ function ClientCard({ client, load }: ClientProp) {
       <article className="client_card">
         <div className="client_data">
           <div className="client_email">
-            <Link to={`/client/${client.id}`}>{client.email}</Link>
+            <Link to={`/client/${clientState.id}`}>{clientState.email}</Link>
           </div>
           <div className="client_button warning" onClick={handleOpenFormUpdate}>
             <FiEdit2 />
@@ -79,18 +78,18 @@ function ClientCard({ client, load }: ClientProp) {
             <button
               className="client_button danger"
               onClick={() => {
-                deleteClient(client);
+                deleteClient(clientState);
               }}
             >
-              Deseja deletar {client.name}?
+              Deseja deletar {clientState.name}?
             </button>
           </div>
         )}
-        <div className="client_name">{client.name}</div>
-        <div className="client_document"> {client.document}</div>
-        <div className="client_document">Criado em {getDate(client)}</div>
+        <div className="client_name">{clientState.name}</div>
+        <div className="client_document"> {clientState.document}</div>
+        <div className="client_document">Criado em {getDate(clientState)}</div>
         {openFormUpdate && (
-          <ClientUpdateForm client={client} loadClients={load} />
+          <ClientUpdateForm client={clientState} setClient={setClientState} />
         )}
       </article>
     </>
