@@ -4,7 +4,7 @@ import { IRequest } from "../../services/Axios/Request";
 class RandomDogsActions {
   private requestApi!: IRequest;
   constructor() {
-    const base_url = "https://random.dog";
+    const base_url = import.meta.env.VITE_DOGS_API;
     const clientFactory = new AxiosFactory(base_url);
     this.requestApi = clientFactory.create(false);
   }

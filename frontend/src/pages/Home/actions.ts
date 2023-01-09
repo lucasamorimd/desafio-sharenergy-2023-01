@@ -5,7 +5,8 @@ import { IRequest } from "../../services/Axios/Request";
 class HomeActions {
   private requestApi!: IRequest;
   constructor() {
-    const base_url = "https://randomuser.me";
+    const base_url =
+      import.meta.env.VITE_RANDOM_USER_API || "https://randomuser.me";
     const clientFactory = new AxiosFactory(base_url);
     this.requestApi = clientFactory.create();
   }

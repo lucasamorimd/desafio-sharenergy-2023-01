@@ -4,7 +4,8 @@ import { IRequest } from "../../services/Axios/Request";
 class ClientDetailActions {
   private requestApi!: IRequest;
   constructor() {
-    const base_url = "http://localhost:5000";
+    const base_url =
+      import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
     const clientFactory = new AxiosFactory(base_url);
     this.requestApi = clientFactory.create();
   }

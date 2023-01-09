@@ -11,7 +11,6 @@ function Login() {
   const [remember_me, setRememberMe] = useState(false);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-  const actions = new LoginActions();
 
   useEffect(() => {
     authenticated();
@@ -27,6 +26,7 @@ function Login() {
 
   const authenticated = () => {
     if (state.auth.isLogged) {
+      console.log("veio aqui?");
       sessionStorage.setItem("user", JSON.stringify(state.auth));
       sessionStorage.setItem("token", state.auth.token);
       if (state.auth.rememberMe) {
@@ -47,6 +47,7 @@ function Login() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const actions = new LoginActions();
     let response = await actions.authenticate(userName, password);
     if (response.data == null) {
       setMessage(response.message);

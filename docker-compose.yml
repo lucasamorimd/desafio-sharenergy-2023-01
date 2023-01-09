@@ -5,9 +5,13 @@ services:
     build: ./frontend
     image: frontend
     stdin_open: true
+    env_file:
+      - ./frontend/.env
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
+      - VITE_API_BASE_URL=http://localhost:5003
+      - VITE_API_PORT=5003
     ports:
       - "5173:5173"
     volumes:
