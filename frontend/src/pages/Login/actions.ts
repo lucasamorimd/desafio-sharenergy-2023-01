@@ -20,7 +20,7 @@ class LoginActions {
 
       return { data: response.data, message: response.message };
     } catch (err: any) {
-      return { data: null, message: err };
+      return { data: null, message: err.message };
     }
   }
 }
