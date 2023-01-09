@@ -44,44 +44,16 @@ function Header({ children, active = "home" }: HeaderChildType) {
               </div>
               <ul id="menu">
                 <li className={active == "home" ? "active" : ""}>
-                  <Link
-                    to="/"
-                    onClick={() => {
-                      showMenu();
-                    }}
-                  >
-                    Home
-                  </Link>
+                  <Link to="/">Home</Link>
                 </li>
                 <li className={active == "cats" ? "active" : ""}>
-                  <Link
-                    to="/cat-http"
-                    onClick={() => {
-                      showMenu();
-                    }}
-                  >
-                    Cats
-                  </Link>
+                  <Link to="/cat-http">Cats</Link>
                 </li>
                 <li className={active == "dogs" ? "active" : ""}>
-                  <Link
-                    to="/random-dogs"
-                    onClick={() => {
-                      showMenu();
-                    }}
-                  >
-                    Dogs
-                  </Link>
+                  <Link to="/random-dogs">Dogs</Link>
                 </li>
                 <li className={active == "clients" ? "active" : ""}>
-                  <Link
-                    to="/clients"
-                    onClick={() => {
-                      showMenu();
-                    }}
-                  >
-                    Clientes
-                  </Link>
+                  <Link to="/clients">Clientes</Link>
                 </li>
                 <li>
                   <Link to="/login" onClick={handdleLogout}>

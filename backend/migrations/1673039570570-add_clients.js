@@ -8,6 +8,8 @@ async function up() {
   let clients = [];
   list.map((item) => {
     const date = new Date();
+    const month = (date.getMonth() + 1).toString();
+    const day = date.getDate().toString();
     clients.push({
       id: uuid.randomUUID(),
       name: `Teste Fulano ${item}`,
@@ -16,8 +18,8 @@ async function up() {
       address: `Endereço ${item}`,
       document: `doc-${item}`,
       created_at: {
-        day: date.getDay(),
-        month: date.getMonth() + 1,
+        day: day.length < 1 ? parseInt("0" + day) : parseInt(day),
+        month: month.length < 1 ? parseInt("0" + month) : parseInt(month),
         year: date.getFullYear(),
         hour: date.getHours(),
         minutes: date.getMinutes(),

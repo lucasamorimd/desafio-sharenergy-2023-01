@@ -31,7 +31,6 @@ class Request implements IRequest {
   }
 
   private verifyError(data: any) {
-    console.log(data.message);
     if (data.error) {
       throw new Error(data.message);
     }

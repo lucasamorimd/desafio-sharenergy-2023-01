@@ -8,6 +8,8 @@ const uuid = require("crypto");
 async function up() {
   const date = new Date();
   // Write migration here
+  const month = (date.getMonth() + 1).toString();
+  const day = date.getDate().toString();
   await User.create({
     id: uuid.randomUUID(),
     userName: "desafiosharenergy",
@@ -15,8 +17,8 @@ async function up() {
     email: "desafiosharenergy@email.com",
     password: "sh@r3n3rgy",
     created_at: {
-      day: date.getDay(),
-      month: date.getMonth() + 1,
+      day: day.length < 1 ? parseInt("0" + day) : parseInt(day),
+      month: month.length < 1 ? parseInt("0" + month) : parseInt(month),
       year: date.getFullYear(),
       hour: date.getHours(),
       minutes: date.getMinutes(),

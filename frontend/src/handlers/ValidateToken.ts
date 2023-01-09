@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { Context } from "../contexts/auth";
 import { AxiosFactory } from "../services/Axios/Factory";
 import { IRequest } from "../services/Axios/Request";
 
@@ -9,16 +12,15 @@ class ValidateToken {
     this.requestApi = clientFactory.create();
   }
   async validate(token: string) {
+    const { logout } = useContext(Context);
     try {
       let response = await this.requestApi.get("/validate-token");
       if (response.token !== token) {
-        return false;
+        throw new Error("Token inválido");
       }
-      console.log("AQUI NO VALIDATE TOKEN", response);
       return true;
     } catch (err) {
-      console.log("NO ERR DO VALIDATE TOKEN", err);
-      return false;
+      logout();
     }
   }
 }

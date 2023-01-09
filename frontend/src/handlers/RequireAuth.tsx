@@ -1,15 +1,24 @@
 import { Navigate } from "react-router-dom";
+import { Context } from "../contexts/auth";
+import { ValidateToken } from "./ValidateToken";
+import { useContext } from "react";
 
 type RequireauthType = {
   children: JSX.Element;
 };
 function RequireAuth({ children }: RequireauthType) {
-  const user = sessionStorage.getItem("user") || localStorage.getItem("user");
+  const { logout } = useContext(Context);
+  const token =
+    sessionStorage.getItem("token") || localStorage.getItem("token");
 
-  if (user) {
-    return children;
+  if (!token) {
+    return logout();
   }
 
-  return <Navigate to="/login" />;
+  const classValidate = new ValidateToken();
+
+  classValidate.validate(token);
+
+  return children;
 }
 export { RequireAuth };

@@ -1,5 +1,6 @@
 import { createContext, useReducer } from "react";
 import { Navigate } from "react-router-dom";
+import { ValidateToken } from "../handlers/ValidateToken";
 import { authReducer, authInitialState } from "../reducers/userReducer";
 import { AuthType } from "../types/AuthType";
 import { reducerActionType } from "../types/reducerActionType";
@@ -28,7 +29,13 @@ const mainReducer = (state: initialStateType, action: reducerActionType) => ({
   auth: authReducer(state.auth, action),
 });
 
-export const ContextProvider: React.FC = ({ children }: any): JSX.Element => {
+type ContextProviderType = {
+  children: JSX.Element;
+};
+
+export const ContextProvider = ({
+  children,
+}: ContextProviderType): JSX.Element => {
   const [state, dispatch] = useReducer(mainReducer, initialState);
   const logout = () => {
     dispatch({
@@ -55,10 +62,12 @@ export const ContextProvider: React.FC = ({ children }: any): JSX.Element => {
       type: "CHANGE_REMEMBER_ME",
       payload: { rememberMe: false },
     });
+
     sessionStorage.clear();
     localStorage.clear();
     return <Navigate to="/login" />;
   };
+
   return (
     <Context.Provider value={{ state, dispatch, logout }}>
       {children}
